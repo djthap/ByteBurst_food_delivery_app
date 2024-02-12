@@ -1,0 +1,12 @@
+@import url(../../src/libs/theme.css);
+
+@media screen and (min-width: 768px) {
+	.highlight_menu {
+		background-color: var(--bg-highlightColor);
+		color: var(--text-highlightColor);
+		height: 7vh;
+		width: 170px;
+		border-radius: 10 0 10 0;
+		padding-left: 15px;
+	}
+}
