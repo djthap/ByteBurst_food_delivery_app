@@ -1,0 +1,5 @@
+@import url(../../src/libs/theme.css);
+
+h3{
+    color: var(--bg-highlightColor);
+}
