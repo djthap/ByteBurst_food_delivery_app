@@ -9,30 +9,29 @@ export default function RegisterPage() {
 	const [email, setEmail] = useState('')
 	const [name, setname] = useState('')
 	const [password, setPassword] = useState('')
-  const [ConfirmPassword, setConfirmPassword] = useState("");
+	const [ConfirmPassword, setConfirmPassword] = useState('')
 	const [creatingUser, setCreatingUser] = useState(false)
 	const [userCreated, setUserCreated] = useState(false)
 	const [error, setError] = useState(false)
 	async function handleFormSubmit(ev) {
 		ev.preventDefault()
 		setCreatingUser(true)
-    if(password===ConfirmPassword){
-
-      setError(false)
-      setUserCreated(false)
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        body: JSON.stringify({ email, password }),
-        headers: { 'Content-Type': 'application/json' },
-      })
-      if (response.ok) {
-        setUserCreated(true)
-      } else {
-        setError(true)
-      }
-    }else{
-      alert("Password Not Matched")
-    }
+		if (password === ConfirmPassword) {
+			setError(false)
+			setUserCreated(false)
+			const response = await fetch('/api/register', {
+				method: 'POST',
+				body: JSON.stringify({ email, password ,name}),
+				headers: { 'Content-Type': 'application/json' },
+			})
+			if (response.ok) {
+				setUserCreated(true)
+			} else {
+				setError(true)
+			}
+		} else {
+			alert('Password Not Matched')
+		}
 		setCreatingUser(false)
 	}
 	return (
@@ -71,7 +70,7 @@ export default function RegisterPage() {
 
 				<input
 					type="email"
-					placeholder="Nmail"
+					placeholder="Email"
 					value={email}
 					disabled={creatingUser}
 					onChange={(ev) => setEmail(ev.target.value)}
@@ -95,7 +94,6 @@ export default function RegisterPage() {
 				<button type="submit" disabled={creatingUser}>
 					Register
 				</button>
-				
 
 				<div className="text-center my-4 text-gray-500 border-t pt-4">
 					Existing account?{' '}
