@@ -1,4 +1,4 @@
-// File: D:\study\sem 4\capstone\project\backup\food-ordering-master\src\app\layout.js
+// File: D:\study\sem 4\capstone\sprint2\New folder\ByteBurst_food_delivery_app\src\app\layout.js
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
