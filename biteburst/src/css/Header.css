@@ -1,0 +1,35 @@
+@import url(../libs/theme.css);
+
+.highlight_menu {
+	background-color: var(--bg-highlightColor);
+	color: var(--text-highlightColor);
+}
+.highlight_menu:hover {
+	background-color: #fff;
+	color: black;
+	border-color: black;
+}
+.space {
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-left: 4px;
+	margin-right: 6px;
+	font-weight: bold;
+	color: var(--bg-highlightColor);
+}
+.space:hover {
+	text-decoration: none;
+	cursor: pointer;
+	background-color: var(--bg-highlightColor);
+	color: #fff !important;
+}
+@media only screen and (min-width: 768px) {
+	.page {
+		min-height: 53vh;
+	}
+}
+@media only screen and (max-width: 768px) {
+	.mf {
+		display: block !important;
+	}
+}

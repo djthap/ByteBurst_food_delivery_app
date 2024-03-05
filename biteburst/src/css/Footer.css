@@ -1,0 +1,16 @@
+@import url(../libs/theme.css);
+
+h3 {
+	color: var(--bg-highlightColor);
+}
+
+.no-gutters {
+	--bs-gutter-x: 0;
+}
+ul {
+    list-style-type: none; 
+
+  }
+  .mrr{
+    margin-right: 0;
+  }
