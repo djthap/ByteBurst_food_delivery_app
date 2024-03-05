@@ -10,6 +10,7 @@ import Register from './routes/Register/Register'
 import { useState } from 'react'
 import Dashboard from './routes/Dashboard/Dashboard'
 import ManageCategory from './routes/Category/ManageCategory'
+import CreateMenuItem from './components/CreateMenuItem'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -48,6 +49,10 @@ function App() {
 				<Route
 					path="/manageCategory"
 					element={<Layout element={<ManageCategory />} />}
+				/>
+				<Route
+					path="/createMenuitem"
+					element={<Layout element={<CreateMenuItem />} />}
 				/>
 
 				<Route

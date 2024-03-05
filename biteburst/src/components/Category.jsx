@@ -116,6 +116,7 @@ function Category() {
 						type="text"
 						placeholder="Enter category name"
 						value={newCategoryName}
+						required
 						onChange={(e) => setNewCategoryName(e.target.value)}
 					/>
 					<button onClick={handleCreateCategory}>Create</button>

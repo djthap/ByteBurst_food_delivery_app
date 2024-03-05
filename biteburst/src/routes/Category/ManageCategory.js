@@ -4,7 +4,7 @@ import CreateMenuItem from '../../components/CreateMenuItem'
 
 function ManageCategory() {
   return (
-    <div><CreateMenuItem/></div>
+    <div><Category/></div>
   )
 }
 
