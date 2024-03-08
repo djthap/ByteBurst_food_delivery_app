@@ -10,6 +10,7 @@ const isAuthenticated = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, 'this-is-our-web-app');
     req.user = decoded.user;
+    console.log(decoded.user)
     next();
   } catch (error) {
     console.error(error.message);
@@ -18,3 +19,4 @@ const isAuthenticated = (req, res, next) => {
 };
 
 module.exports = isAuthenticated;
+

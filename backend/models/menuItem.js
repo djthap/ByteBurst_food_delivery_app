@@ -16,12 +16,10 @@ const menuItemSchema = new Schema({
     basePrice: { type: Number },
     sizes: [{ type: Schema.Types.ObjectId, ref: 'ExtraPrice' }], 
     extraIngredientPrices: [{ type: Schema.Types.ObjectId, ref: 'ExtraPrice' }], 
+    createdBy: { type: Schema.Types.ObjectId, ref: 'User' }, 
 }, { timestamps: true });
 
-
 const ExtraPrice = mongoose.model('ExtraPrice', ExtraPriceSchema);
-
-
 const MenuItem = mongoose.model('MenuItem', menuItemSchema);
 
 module.exports = { MenuItem, ExtraPrice };

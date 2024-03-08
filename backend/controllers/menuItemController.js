@@ -2,6 +2,8 @@ const cloudinary = require('cloudinary');
 const { MenuItem } = require('../models/menuItem');
 const multer = require('multer');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 // Cloudinary configuration
 cloudinary.config({
@@ -22,12 +24,28 @@ const upload = multer({ storage }).single('image');
 // Controller methods
 const getAllMenuItems = async (req, res) => {
   try {
-    const menuItems = await MenuItem.find();
+    const menuItems = await MenuItem.find().populate('category',"category_name") 
+    .populate('createdBy', 'name');
+    console.log(menuItems)
     res.status(200).json(menuItems);
   } catch (error) {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+const getRandomMenuItems = async (req, res) => {
+  try {
+    const randomMenuItems = await MenuItem.aggregate([
+      { $sample: { size: 3 } } 
+    ]);
+
+    res.status(200).json(randomMenuItems);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+
 
 const createMenuItem = async (req, res) => {
   try {
@@ -35,7 +53,14 @@ const createMenuItem = async (req, res) => {
       if (err) {
         return res.status(500).json({ error: 'Failed to upload image' });
       }
-      const { image, name, description, category, basePrice, sizes, extraIngredientPrices } = req.body;
+      const token = req.header('Authorization');
+      const decoded = jwt.verify(token, 'this-is-our-web-app');
+    
+const createdBy= decoded.user.id;
+      
+
+      const { image, name, description, category, basePrice, sizes, extraIngredientPrices  } = req.body;
+
       const imageUrl = await cloudinary.uploader.upload(req.file.path);
       const menuItem = new MenuItem({
         image: imageUrl.secure_url,
@@ -44,10 +69,10 @@ const createMenuItem = async (req, res) => {
         category,
         basePrice,
         sizes,
-        extraIngredientPrices
+        extraIngredientPrices,
+        createdBy
       });
       await menuItem.save();
-      // Remove uploaded file after saving to database
       fs.unlinkSync(req.file.path);
       res.status(201).json({ message: 'MenuItem created successfully', menuItem });
     });
@@ -106,5 +131,6 @@ module.exports = {
   createMenuItem,
   updateMenuItem,
   deleteMenuItem,
-  getMenuItemById
+  getMenuItemById,
+  getRandomMenuItems
 };
