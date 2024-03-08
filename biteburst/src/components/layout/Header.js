@@ -5,21 +5,22 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import "../../css/Header.css"
+
 
 export default function Header(loading, setloading) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false) // State to manage login status
 	console.log(loading)
 	useEffect(() => {
 		// Check if user is logged in using session storage
-checkSession();
-		
+		checkSession()
 	}, [loading])
 
-	const checkSession =()=>{
+	const checkSession = () => {
 		const userLoggedIn =
-		sessionStorage.getItem('user') && sessionStorage.getItem('token')
-	setIsLoggedIn(userLoggedIn)
-	// setloading(false)
+			sessionStorage.getItem('user') && sessionStorage.getItem('token')
+		setIsLoggedIn(userLoggedIn)
+		// setloading(false)
 	}
 
 	const handleLogout = () => {
@@ -31,11 +32,12 @@ checkSession();
 	return (
 		<Navbar expand="lg" className="bg-body-tertiary text-dark">
 			<Container fluid>
-				<Navbar.Brand href="/">
+				<Navbar.Brand href="/" className='logo_bg'>
 					<img
+					
 						src={'/bitebrust.png'}
-						width={30}
-						height={30}
+						width={90}
+						height={40}
 						alt={'logo'}
 					/>
 				</Navbar.Brand>
@@ -51,14 +53,14 @@ checkSession();
 						</Nav.Link>
 						{isLoggedIn ? (
 							<Nav.Link
-							href="/adminDashboard"
-							className="space"
-							style={{ color: 'black' }}
-						>
-							Admin's Dashboard
-						</Nav.Link>
+								href="/adminDashboard"
+								className="space"
+								style={{ color: 'black' }}
+							>
+								Admin's Dashboard
+							</Nav.Link>
 						) : (
-							""
+							''
 						)}
 						<Nav.Link
 							href="/"
@@ -99,7 +101,7 @@ checkSession();
 									to={'/Login'}
 									className="text-decoration-none space"
 								>
-									Login
+									LOGIN
 								</NavLink>
 							</Nav>
 						)}

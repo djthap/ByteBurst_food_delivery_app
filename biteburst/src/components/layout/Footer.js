@@ -3,12 +3,12 @@ import '../..//css/Footer.css'
 export default function Footer() {
 	return (
 		<>
-			<footer className=" row  no-gutters pt-4">
-				<div className="col-md-4 col-12 p-5">
+			<footer className=" row  no-gutters pt-4 logo_bg">
+				<div className="col-md-4 col-12 p-5 ">
 					<img
 						src={'/bitebrust.png'}
-						width={50}
-						height={50}
+						width={90}
+						height={40}
 						alt={'logo'}
 						className=""
 					/>
@@ -118,10 +118,10 @@ export default function Footer() {
 						</div>
 					</div>
 				</div>
+				<div className="flex justify-center mt-4">
+					<p>&copy; 2023 All rights reserved</p>
+				</div>
 			</footer>
-			<div className="flex justify-center mt-4">
-				<p>&copy; 2023 All rights reserved</p>
-			</div>
 		</>
 	)
 }
