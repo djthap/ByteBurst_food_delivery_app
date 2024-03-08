@@ -11,7 +11,7 @@ router.get('/top3', menuItemController.getRandomMenuItems);
 router.post('/', isAuthenticated ,menuItemController.createMenuItem);
 
 
-router.put('/:id', menuItemController.updateMenuItem);
+router.put('/:id',isAuthenticated, menuItemController.updateMenuItem);
 
 
 router.delete('/:id', menuItemController.deleteMenuItem);

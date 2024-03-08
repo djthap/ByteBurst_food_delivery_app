@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage }).single('image');
 
-// Controller methods
+
 const getAllMenuItems = async (req, res) => {
   try {
     const menuItems = await MenuItem.find().populate('category',"category_name") 
@@ -84,10 +84,16 @@ const createdBy= decoded.user.id;
 const updateMenuItem = async (req, res) => {
   try {
     const { id } = req.params;
+    const token = req.header('Authorization');
+    const decoded = jwt.verify(token, 'this-is-our-web-app');
+  
+const createdBy= decoded.user.id;
+    
     const { image, name, description, category, basePrice, sizes, extraIngredientPrices } = req.body;
+
     const updatedMenuItem = await MenuItem.findByIdAndUpdate(
       id,
-      { image, name, description, category, basePrice, sizes, extraIngredientPrices },
+      { image, name, description, category, basePrice, sizes, extraIngredientPrices  ,createdBy},
       { new: true }
     );
     if (!updatedMenuItem) {
