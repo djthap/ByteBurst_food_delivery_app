@@ -1,5 +1,6 @@
 import React from 'react'
 import '../css/Home.css'
+import ProductLayout from './ProductLayout'
 
 export default function HomePage() {
     return (
@@ -7,95 +8,96 @@ export default function HomePage() {
             <section className="home-container">
                 <div className="text-overlay">
                     <h2>Food that makes you happy</h2>
-                    <h5>Our job is to fill your tummy with delicious food with fast and free delivery</h5>
+                    <h5>Our job is to fill your tummy with delicious food with
+                        fast and free delivery</h5>
                     <button name='Order Now'>Order Now</button>
                 </div>
             </section>
             <section className="food-icons-container">
                 <h2 className="heading1">Want To Eat?</h2>
                 <div className=' pl-4 pr-4'>
-
-                <div className="d-flex cat gx-0">
-                    <div className="col-1 text-center">
-                        <img
-                            src={'/pizzaIcon.png'}
-                            width={70}
-                            height={70}
-                            alt={'pizzaicon'}
-                            className="icon"
+                    <div className="d-flex cat gx-0">
+                        <div className="col-1 text-center">
+                            <img
+                                src={'/pizzaIcon.png'}
+                                width={70}
+                                height={70}
+                                alt={'pizzaicon'}
+                                className="icon"
                             />
-                        <p>Pizza</p>
-                    </div>
-                    <div className="col-1 text-center">
-                        <img
-                            src={'/BurgerIcon.png'}
-                            width={70}
-                            height={70}
-                            alt={'burgericon'}
-                            className="icon"
+                            <p>Pizza</p>
+                        </div>
+                        <div className="col-1 text-center">
+                            <img
+                                src={'/BurgerIcon.png'}
+                                width={70}
+                                height={70}
+                                alt={'burgericon'}
+                                className="icon"
                             />
-                        <p>Burger</p>
-                    </div>
-                    <div className="col-1 text-center">
-                        <img
-                            src={'/noodlesIcon.png'}
-                            width={70}
-                            height={70}
-                            alt={'nooldesicon'}
-                            className="icon"
+                            <p>Burger</p>
+                        </div>
+                        <div className="col-1 text-center">
+                            <img
+                                src={'/noodlesIcon.png'}
+                                width={70}
+                                height={70}
+                                alt={'nooldesicon'}
+                                className="icon"
                             />
-                        <p>Noodles</p>
-                    </div>
-                    <div className="col-1 text-center">
-                        <img
-                            src={'/sandwichIcon.png'}
-                            width={70}
-                            height={70}
-                            alt={'sandwichicon'}
-                            className="icon"
+                            <p>Noodles</p>
+                        </div>
+                        <div className="col-1 text-center">
+                            <img
+                                src={'/sandwichIcon.png'}
+                                width={70}
+                                height={70}
+                                alt={'sandwichicon'}
+                                className="icon"
                             />
-                        <p>Sandwich</p>
-                    </div>
-                    <div className="col-1 text-center">
-                        <img
-                            src={'/cupcakeIcon.png'}
-                            width={70}
-                            height={70}
-                            alt={'cupcakeicon'}
-                            className="icon"
+                            <p>Sandwich</p>
+                        </div>
+                        <div className="col-1 text-center">
+                            <img
+                                src={'/cupcakeIcon.png'}
+                                width={70}
+                                height={70}
+                                alt={'cupcakeicon'}
+                                className="icon"
                             />
-                        <p>Cupcake</p>
-                    </div>
-                    <div className="col-1 text-center">
-                        <img
-                            src={'/icecreamIcon.png'}
-                            width={70}
-                            height={70}
-                            alt={'icecreamicon'}
-                            className="icon"
+                            <p>Cupcake</p>
+                        </div>
+                        <div className="col-1 text-center">
+                            <img
+                                src={'/icecreamIcon.png'}
+                                width={70}
+                                height={70}
+                                alt={'icecreamicon'}
+                                className="icon"
                             />
-                        <p>Ice Cream</p>
-                    </div>
-                    <div className="col-1 text-center">
-                        <img
-                            src={'/drinkIcon.png'}
-                            width={70}
-                            height={70}
-                            alt={'drinkicon'}
-                            className="icon"
+                            <p>Ice Cream</p>
+                        </div>
+                        <div className="col-1 text-center">
+                            <img
+                                src={'/drinkIcon.png'}
+                                width={70}
+                                height={70}
+                                alt={'drinkicon'}
+                                className="icon"
                             />
-                        <p>Drinks</p>
+                            <p>Drinks</p>
+                        </div>
                     </div>
-                            </div>
                 </div>
             </section>
             <section>
                 <h2 className='heading1'>Our Most Popular Recipes</h2>
+                <ProductLayout/>
             </section>
             <section className="testimonials-container">
                 <h2 className="heading1">Client Testimonials</h2>
                 <div className="d-flex justify-content-center gx-0 ">
-                    <div className="col-md-4">
+                    <div className="col-md-5">
                         <div className="testimonial">
                             <img
                                 src={'/Client.png'}
@@ -106,16 +108,21 @@ export default function HomePage() {
                             />
                         </div>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-7">
                         <div className="testimonial ">
-                            <p className="testimonial-text">"As a busy professional, I rely on ByteBurst to satisfy my cravings without sacrificing quality. Their wide variety of cuisines and easy ordering process make it my go-to choice for convenient and tasty meals."</p>
+                            <p className="testimonial-text">
+                                "As a busy professional, I rely on ByteBurst to satisfy my cravings 
+                                without sacrificing quality. Their wide variety of cuisines and 
+                                easy ordering process make it my go-to choice for convenient and 
+                                tasty meals."
+                            </p>
                             <p className="client-name">- Emily Watson</p>
                         </div>
                     </div>
                 </div>
             </section>
             <section className="aboutusPara3 alignLeft">
-                <div className="row">
+                <div className="terms">
                     <div className="col-md-3 col-12">
                         <div className="picturebox2 logo dd">
                             <img
@@ -123,7 +130,7 @@ export default function HomePage() {
                                 width={165}
                                 height={166}
                                 alt={'logo'}
-                                className="img"
+                                className="termimg"
                             />
 
                             <h1 className="head2">
@@ -141,7 +148,7 @@ export default function HomePage() {
                                 width={165}
                                 height={166}
                                 alt={'logo'}
-                                className="img"
+                                className="termimg"
                             />
 
                             <h1 className="head2">30 minutes delivery</h1>
@@ -158,7 +165,7 @@ export default function HomePage() {
                                 width={165}
                                 height={166}
                                 alt={'logo'}
-                                className="img"
+                                className="termimg"
                             />
 
                             <h1 className="head2">Best quality guarantee</h1>
@@ -175,7 +182,7 @@ export default function HomePage() {
                                 width={165}
                                 height={166}
                                 alt={'logo'}
-                                className="img"
+                                className="termimg"
                             />
 
                             <h1 className="head2">Variety of dishes</h1>

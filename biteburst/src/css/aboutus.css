@@ -49,8 +49,9 @@
 .dd {
 	display: block;
 }
-.row {
+.terms {
 	display: flex;
+	margin-left: 70px;
 }
 .head {
 	font-size: 40px;
@@ -73,7 +74,6 @@
 }
 .col-4 {
 	width: 25%;
-
 	justify-content: center;
 	display: flex;
 }
@@ -81,7 +81,6 @@
 	content: '';
 	position: absolute;
 	width: 100%;
-
 	background: radial-gradient(circle at 50% 0%, transparent 0%, #fff 10%);
 }
 .picturebox {
@@ -91,9 +90,9 @@
 	display: flex;
 	padding: 10px;
 }
-.img {
-	height: 70px !important;
-	width: 70px !important;
+.termimg {
+	height: 70px ;
+	width: 70px ;
 	margin-left: 35%;
 	margin-right: 35%;
 	margin-top: 15%;
