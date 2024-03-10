@@ -12,7 +12,7 @@ export default function Footer() {
 						alt={'logo'}
 						className=""
 					/>
-					<p>
+					<p className='footerinfo'>
 						ByteBrust: Where flavor meets convenience. Explore,
 						order, and indulge with ease on our website.
 					</p>

@@ -41,6 +41,8 @@
 
   .food-icons-container {
     text-align: center;
+    padding-left: 130px;
+    padding-right: 130px;
   }
   
   .icon-row {
@@ -49,12 +51,7 @@
     flex-wrap: wrap;
   }
   
-  .picturebox {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 10px;
-  }
+
   
   .icon {
     display: block;
@@ -68,11 +65,8 @@
   }
   
   .testimonial {
-    margin-bottom: 50px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    display: flex;
+    text-align: right;
+    margin-right: 50px;
 
   }
   .cat{
@@ -86,8 +80,14 @@
   
   .testimonial-text {
     font-style: italic;
+    margin-top: 50px;
+    font-size: 24px;
+    text-align: center;
   }
   
   .client-name {
     font-weight: bold;
+    font-size: 20px;
+    text-align: right;
+    margin-right: 10px;
   }

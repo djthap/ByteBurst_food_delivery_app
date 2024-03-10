@@ -1,0 +1,52 @@
+@import url(../libs/theme.css);
+
+.product-item {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    max-width: 200px; 
+    text-align: left;
+    margin-bottom: 20px; 
+    padding:10px;
+    color: var(--bg-highlightColor);
+}
+
+.img {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.price-and-button {
+    display: flex;
+    width: 100%;
+}
+
+button {
+    background-color: var(--bg-highlightColor);
+    color: var(--text-highlightColor);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right:10px;
+}
+
+.product-item:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); 
+}
+
+.product-item:hover button {
+    background-color: var(--bg-highlightColor); 
+}
+
+.info p {
+    margin-top: -5px; 
+}

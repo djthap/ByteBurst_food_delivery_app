@@ -76,7 +76,7 @@ export default function About() {
 			</section>
 			<div className="paint-stroke"></div>
 			<section className="aboutusPara3 alignLeft">
-				<div className="row">
+				<div className="terms">
 					<div className="col-md-3 col-12">
 						<div className="picturebox2 logo dd">
 							<img
@@ -84,7 +84,7 @@ export default function About() {
 								width={165}
 								height={166}
 								alt={'logo'}
-								className="img"
+								className="termimg"
 							/>
 
 							<h1 className="head2">
@@ -102,7 +102,7 @@ export default function About() {
 								width={165}
 								height={166}
 								alt={'logo'}
-								className="img"
+								className="termimg"
 							/>
 
 							<h1 className="head2">30 minutes delivery</h1>
@@ -119,7 +119,7 @@ export default function About() {
 								width={165}
 								height={166}
 								alt={'logo'}
-								className="img"
+								className="termimg"
 							/>
 
 							<h1 className="head2">Best quality guarantee</h1>
@@ -136,7 +136,7 @@ export default function About() {
 								width={165}
 								height={166}
 								alt={'logo'}
-								className="img"
+								className="termimg"
 							/>
 
 							<h1 className="head2">Variety of dishes</h1>

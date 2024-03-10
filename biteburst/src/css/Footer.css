@@ -4,11 +4,17 @@ h3 {
 	color: #b98c64;
 }
 
+.footerinfo{
+	margin-top: 10px;
+	color: var(--text-highlightColor);
+}
+
 .no-gutters {
 	--bs-gutter-x: 0;
 }
 ul {
 	list-style-type: none;
+	color: var(--text-highlightColor);
 }
 .mrr {
 	margin-right: 0;
