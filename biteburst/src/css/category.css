@@ -1,4 +1,4 @@
-/* category.css */
+@import url(../libs/theme.css);
 
 .dashboard-container {
 	max-width: 800px;

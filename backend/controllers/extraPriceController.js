@@ -2,12 +2,14 @@ const { MenuItem, ExtraPrice } = require('../models/menuItem');
 
 const createExtraPrice = async (req, res) => {
     try {
+
         const { name, price } = req.body;
         const extraPrice = new ExtraPrice({ name, price });
         await extraPrice.save();
         res.status(200).json(extraPrice);
     } catch (error) {
         res.status(400).json({ message: error.message });
+        
     }
 };
 

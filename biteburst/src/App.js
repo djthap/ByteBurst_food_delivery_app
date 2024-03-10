@@ -11,6 +11,8 @@ import { useState } from 'react'
 import Dashboard from './routes/Dashboard/Dashboard'
 import ManageCategory from './routes/Category/ManageCategory'
 import CreateMenuItem from './components/CreateMenuItem'
+import ManageMenuItem from './routes/manageMenuItem/ManageMenuItem'
+import ManageExtraPrice from './routes/MangeExtraPrice/ManageExtraPrice'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -53,6 +55,14 @@ function App() {
 				<Route
 					path="/createMenuitem"
 					element={<Layout element={<CreateMenuItem />} />}
+				/>
+				<Route
+					path="/manageMenuitem"
+					element={<Layout element={<ManageMenuItem />} />}
+				/>
+				<Route
+					path="/ManageExtraPrice"
+					element={<Layout element={<ManageExtraPrice/> } />}
 				/>
 
 				<Route

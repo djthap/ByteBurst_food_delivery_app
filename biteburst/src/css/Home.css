@@ -1,93 +1,156 @@
 @import url(../libs/theme.css);
 
-.heading1{
-    color: var(--bg-highlightColor);
+.heading1 {
+	color: var(--bg-highlightColor);
 }
 .home-container {
-    position: relative;
-    width: 100%;
-    height: 500px; /* Set height as per your image */
-    /* background-image: url('/HomeHeader.png'); */
-    background-size: cover;
-    background-position: center;
-    background-color: var(--bg-highlightColor);
-	
-  }
-  
-  .text-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .text-overlay h2,
-  .text-overlay h5,
-  .text-overlay button {
-    color: var(--text-highlightColor);
-  }
-  
-  .text-overlay button {
-    background-color: var(--text-highlightColor);
-    border: none;
-    color: var(--bg-highlightColor);
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
+	position: relative;
+	width: 100%;
+	height: 500px;
+	background-image: url('https://res.cloudinary.com/db4apiuz9/image/upload/v1710094780/li7oriluwk1yyavalu6o.jpg');
+	background-size: cover;
+	background-position: center;
+	background-color: rgba(255, 255, 255, 0.5);
+}
+.background-overlay::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
+	pointer-events: none;
+}
 
-  .food-icons-container {
-    text-align: center;
-    padding-left: 130px;
-    padding-right: 130px;
-  }
-  
-  .icon-row {
-    display: flex;
-    justify-content: space-around; /* Adjust spacing between icons */
-    flex-wrap: wrap;
-  }
-  
+.home-container {
+	position: relative;
+	width: 100%;
+	height: 500px;
+	background-image: url('https://res.cloudinary.com/db4apiuz9/image/upload/v1710094780/li7oriluwk1yyavalu6o.jpg');
+	background-size: cover;
+	background-position: center;
+	color: black;
+}
 
-  
-  .icon {
-    display: block;
-    margin: 0 auto;
-  }
-  
+.home-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.248);
+}
 
-  .testimonials-container {
-    text-align: center;
-    padding: 50px 0;
-  }
-  
-  .testimonial {
-    text-align: right;
-    margin-right: 50px;
+.text-overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	color: rgb(12, 12, 12);
+	z-index: 1;
+}
 
-  }
-  .cat{
-    justify-content: space-between;
-    padding-left: 126px;
-    padding-right: 126px;
-  }
-  .client-avatar {
-    border-radius: 80%;
-  }
-  
-  .testimonial-text {
-    font-style: italic;
-    margin-top: 50px;
-    font-size: 24px;
-    text-align: center;
-  }
-  
-  .client-name {
-    font-weight: bold;
-    font-size: 20px;
-    text-align: right;
-    margin-right: 10px;
-  }
+.text-overlay h2 {
+	font-size: 36px;
+	color: black;
+	margin-bottom: 10px;
+}
+
+.text-overlay h5 {
+	font-size: 18px;
+	color: black;
+	margin-bottom: 20px;
+}
+
+.text-overlay button {
+	padding: 10px 20px;
+	font-size: 16px;
+	background-color: #ff6600;
+	border: none;
+	border-radius: 5px;
+	color: rgb(17, 17, 17);
+	cursor: pointer;
+}
+
+.text-overlay button:hover {
+	background-color: #e55e00;
+}
+
+.background-overlay {
+	opacity: 0.5;
+}
+.text-overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.text-overlay h2,
+.text-overlay h5,
+.text-overlay button {
+	color: black;
+}
+
+.text-overlay button {
+	background-color: var(--text-highlightColor);
+	border: none;
+	color: var(--bg-highlightColor);
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.food-icons-container {
+	text-align: center;
+	padding-left: 130px;
+	padding-right: 130px;
+}
+
+.icon-row {
+	display: flex;
+	justify-content: space-around; /* Adjust spacing between icons */
+	flex-wrap: wrap;
+}
+
+.icon {
+	display: block;
+	margin: 0 auto;
+}
+
+.testimonials-container {
+	text-align: center;
+	padding: 50px 0;
+}
+
+.testimonial {
+	text-align: right;
+	margin-right: 50px;
+}
+.cat {
+	justify-content: space-between;
+	padding-left: 126px;
+	padding-right: 126px;
+}
+.client-avatar {
+	border-radius: 80%;
+}
+
+.testimonial-text {
+	font-style: italic;
+	margin-top: 50px;
+	font-size: 24px;
+	text-align: center;
+}
+
+.client-name {
+	font-weight: bold;
+	font-size: 20px;
+	text-align: right;
+	margin-right: 10px;
+}
