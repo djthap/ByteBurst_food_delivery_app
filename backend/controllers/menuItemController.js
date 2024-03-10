@@ -48,6 +48,8 @@ const getAllMenuItems = async (req, res) => {
 		const menuItems = await MenuItem.find()
 			.populate('category', 'category_name')
 			.populate('createdBy', 'name')
+			.populate('sizes', 'name price'  )
+			.populate('extraIngredientPrices', 'name  price')
 		console.log(menuItems)
 		res.status(200).json(menuItems)
 	} catch (error) {
@@ -176,7 +178,9 @@ const deleteMenuItem = async (req, res) => {
 const getMenuItemById = async (req, res) => {
 	try {
 		const { id } = req.params
-		const menuItem = await MenuItem.findById(id)
+		const menuItem = await MenuItem.findById(id).populate('category', 'category_name')
+		.populate('sizes', 'name price'  )
+		.populate('extraIngredientPrices', 'name  price')
 		if (!menuItem) {
 			return res.status(404).json({ message: 'MenuItem not found' })
 		}

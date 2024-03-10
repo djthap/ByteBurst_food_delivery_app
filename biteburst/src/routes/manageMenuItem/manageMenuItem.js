@@ -1,10 +1,10 @@
 import React from 'react'
 import CreateMenuItem from '../../components/CreateMenuItem'
 import ExtraPrice from '../../components/ExtraPrice'
-import MangeMenuItem from '../../components/MangeMenuItem'
+import ManageMenuItems from '../../components/ManageMenuItems'
 
 export default function ManageMenuItem() {
   return (
-    <div><MangeMenuItem/></div>
+    <div><ManageMenuItems/></div>
   )
 }

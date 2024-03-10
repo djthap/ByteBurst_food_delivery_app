@@ -13,6 +13,7 @@ function CreateMenuItem() {
 		sizes: [],
 		extraIngredientPrices: [],
 	})
+	
 
 	const [categories, setCategories] = useState([])
 	const [extraPrices, setExtraPrices] = useState([])

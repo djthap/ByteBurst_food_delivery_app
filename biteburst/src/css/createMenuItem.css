@@ -1,3 +1,7 @@
+@import url(../libs/theme.css);
+
+
+
 .container {
 	max-width: 400px;
 	margin: 50px auto; /* Center the form horizontally */
@@ -62,7 +66,7 @@ textarea.form-control {
 }
 
 .button {
-	background-color: #007bff;
+	background-color: var(--bg-highlightColor);
 	color: #fff;
 	border: none;
 	border-radius: 5px;

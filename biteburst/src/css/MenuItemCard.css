@@ -1,0 +1,66 @@
+@import url(../libs/theme.css);
+
+.menu-item-card {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 10px;
+	background-color: #fff;
+	margin: 10px;
+
+}
+.ll{
+ 
+        background-color: var(--bg-highlightColor);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-right: 5px;
+        cursor: pointer;
+ 
+}
+.menu-item-image {
+	width: 100%;
+	border-radius: 5px;
+}
+
+.menu-item-title {
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.menu-item-description {
+	margin-top: 5px;
+}
+
+.menu-item-price {
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+.menu-item-actions {
+	margin-top: 10px;
+}
+
+.menu-item-edit,
+.menu-item-delete {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.menu-item-edit:hover,
+.menu-item-delete:hover {
+	background-color: #0056b3;
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+	.menu-item-card {
+		width: calc(100% - 20px); /* Adjust width to fit container */
+	}
+}
