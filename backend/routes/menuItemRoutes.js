@@ -3,20 +3,17 @@ const router = express.Router();
 const menuItemController = require('../controllers/menuItemController');
 const isAuthenticated = require('../middleware/authMiddleware');
 
-
 router.get('/', menuItemController.getAllMenuItems);
 router.get('/top3', menuItemController.getRandomMenuItems);
 
+router.post('/', menuItemController.createMenuItem);
 
-router.post('/', isAuthenticated ,menuItemController.createMenuItem);
-
-
-router.put('/:id',isAuthenticated, menuItemController.updateMenuItem);
-
+router.put('/:id', isAuthenticated, menuItemController.updateMenuItem);
 
 router.delete('/:id', menuItemController.deleteMenuItem);
 
-
 router.get('/:id', menuItemController.getMenuItemById);
+
+router.post('/uploadImage', menuItemController.uploadImage); // Add route for image upload
 
 module.exports = router;

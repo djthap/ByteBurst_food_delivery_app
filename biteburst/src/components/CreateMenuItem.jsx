@@ -1,167 +1,221 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react'
+import { Form, Button } from 'react-bootstrap'
+import { MultiSelect } from 'react-multi-select-component'
+import '../css/createMenuItem.css'
 
 function CreateMenuItem() {
-  const [formData, setFormData] = useState({
-    image: '',
-    name: '',
-    description: '',
-    category: '', 
-    basePrice: '',
-    sizes: [],
-    extraIngredientPrices: []
-  });
+	const [formData, setFormData] = useState({
+		image: '',
+		name: '',
+		description: '',
+		category: '',
+		basePrice: '',
+		sizes: [],
+		extraIngredientPrices: [],
+	})
 
-  const [categories, setCategories] = useState([]);
-  const [extraPrices, setExtraPrices] = useState([]);
+	const [categories, setCategories] = useState([])
+	const [extraPrices, setExtraPrices] = useState([])
+	const [selectedSizes, setSelectedSizes] = useState([])
+	const [selectedIngredients, setSelectedIngredients] = useState([])
 
-  useEffect(() => {
-    fetchCategories();
-    fetchExtraPrices();
-  }, []);
+	useEffect(() => {
+		fetchCategories()
+		fetchExtraPrices()
+	}, [])
 
-  const fetchCategories = async () => {
-    try {
-      const response = await fetch('/api/categories');
-      if (!response.ok) {
-        throw new Error('Failed to fetch categories');
-      }
-      const data = await response.json();
-      setCategories(data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-    }
-  };
+	const fetchCategories = async () => {
+		try {
+			const response = await fetch('/api/categories')
+			if (!response.ok) {
+				throw new Error('Failed to fetch categories')
+			}
+			const data = await response.json()
+			setCategories(data)
+		} catch (error) {
+			console.error('Error fetching categories:', error)
+		}
+	}
 
-  const fetchExtraPrices = async () => {
-    try {
-      const response = await fetch('/api/extraPrice');
-      if (!response.ok) {
-        throw new Error('Failed to fetch extra prices');
-      }
-      const data = await response.json();
-      setExtraPrices(data);
-    } catch (error) {
-      console.error('Error fetching extra prices:', error);
-    }
-  };
+	const fetchExtraPrices = async () => {
+		try {
+			const response = await fetch('/api/extraPrice')
+			if (!response.ok) {
+				throw new Error('Failed to fetch extra prices')
+			}
+			const data = await response.json()
+			setExtraPrices(data)
+		} catch (error) {
+			console.error('Error fetching extra prices:', error)
+		}
+	}
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+	const handleChange = (e) => {
+		const { name, value } = e.target
+		setFormData({
+			...formData,
+			[name]: value,
+		})
+	}
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setFormData({
-      ...formData,
-      image: file
-    });
-  };
+	const handleImageChange = async (e) => {
+		const file = e.target.files[0]
 
-  const handleSelectChange = (e) => {
-    const { name, options } = e.target;
-    const selectedItems = Array.from(options)
-      .filter(option => option.selected)
-      .map(option => option.value);
-    setFormData({
-      ...formData,
-      [name]: selectedItems
-    });
-  };
+		try {
+			const formData = new FormData()
+			formData.append('image', file)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('image', formData.image);
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('description', formData.description);
-      formDataToSend.append('category', formData.category);
-      formDataToSend.append('basePrice', formData.basePrice);
-      formDataToSend.append('sizes', JSON.stringify(formData.sizes));
-      formDataToSend.append('extraIngredientPrices', JSON.stringify(formData.extraIngredientPrices));
+			const response = await fetch('/api/menuItem/uploadImage', {
+				method: 'POST',
+				body: formData,
+			})
 
-      const response = await fetch('/api/menuItem', {
-        method: 'POST',
-        body: formDataToSend
-      });
-      if (!response.ok) {
-        throw new Error('Failed to create menu item');
-      }
-      const data = await response.json();
-      alert("created successfully")
-      console.log(data); 
-    } catch (error) {
-      console.error('Error creating menu item:', error); 
-    }
-  };
+			if (!response.ok) {
+				throw new Error('Failed to upload image')
+			}
 
-  return (
-    <div>
-      <h2>Create Menu Item</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Image:</Form.Label>
-          <Form.Control type="file" name="image" onChange={handleImageChange} accept="image/*" />
-        </Form.Group>
+			const data = await response.json()
+			setFormData({
+				...formData,
+				image: data.imageUrl,
+			})
+		} catch (error) {
+			console.error('Error uploading image:', error)
+		}
+	}
 
-        <Form.Group className="mb-3">
-          <Form.Label>Name:</Form.Label>
-          <Form.Control type="text" name="name" value={formData.name} onChange={handleChange} />
-        </Form.Group>
+	const handleSizeChange = (selected) => {
+		setSelectedSizes(selected)
+		setFormData({
+			...formData,
+			sizes: selected.map((option) => option.value),
+		})
+	}
 
-        <Form.Group className="mb-3">
-          <Form.Label>Description:</Form.Label>
-          <Form.Control as="textarea" name="description" value={formData.description} onChange={handleChange} />
-        </Form.Group>
+	const handleIngredientChange = (selected) => {
+		setSelectedIngredients(selected)
+		setFormData({
+			...formData,
+			extraIngredientPrices: selected.map((option) => option.value),
+		})
+	}
 
-        <Form.Group className="mb-3">
-          <Form.Label>Category:</Form.Label>
-          <Form.Select name="category" value={formData.category} onChange={handleChange}>
-            <option value="">Select Category</option>
-            {categories.map(category => (
-              <option key={category._id} value={category._id}>
-                {category.category_name}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		try {
+			const response = await fetch('/api/menuItem', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `${sessionStorage.getItem('token')}`,
+				},
+				body: JSON.stringify(formData),
+			})
 
-        <Form.Group className="mb-3">
-          <Form.Label>Base Price:</Form.Label>
-          <Form.Control type="number" name="basePrice" value={formData.basePrice} onChange={handleChange} />
-        </Form.Group>
+			if (!response.ok) {
+				throw new Error('Failed to create menu item')
+			}
 
-        <Form.Group className="mb-3">
-          <Form.Label>Sizes:</Form.Label>
-          <Form.Select multiple name="sizes" value={formData.sizes} onChange={handleSelectChange}>
-            {extraPrices.map(extraPrice => (
-              <option key={extraPrice._id} value={extraPrice._id}>
-                {extraPrice.name} - {extraPrice.price}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+			const data = await response.json()
+			alert('Created successfully')
+			console.log(data)
+		} catch (error) {
+			console.error('Error creating menu item:', error)
+		}
+	}
 
-        <Form.Group className="mb-3">
-          <Form.Label>Extra Ingredient Prices:</Form.Label>
-          <Form.Select multiple name="extraIngredientPrices" value={formData.extraIngredientPrices} onChange={handleSelectChange}>
-            {extraPrices.map(extraPrice => (
-              <option key={extraPrice._id} value={extraPrice._id}>
-                {extraPrice.name} - {extraPrice.price}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
+	return (
+		<div className="container">
+			<h2>Create Menu Item</h2>
+			<Form onSubmit={handleSubmit}>
+				<Form.Group className="mb-3">
+					<Form.Label>Image:</Form.Label>
+					<Form.Control
+						type="file"
+						name="image"
+						onChange={handleImageChange}
+						accept="image/*"
+					/>
+				</Form.Group>
 
-        <Button type="submit">Create</Button>
-      </Form>
-    </div>
-  );
+				<Form.Group className="mb-3">
+					<Form.Label>Name:</Form.Label>
+					<Form.Control
+						type="text"
+						name="name"
+						value={formData.name}
+						onChange={handleChange}
+					/>
+				</Form.Group>
+
+				<Form.Group className="mb-3">
+					<Form.Label>Description:</Form.Label>
+					<Form.Control
+						as="textarea"
+						name="description"
+						value={formData.description}
+						onChange={handleChange}
+					/>
+				</Form.Group>
+
+				<Form.Group className="mb-3">
+					<Form.Label>Category:</Form.Label>
+					<Form.Select
+						name="category"
+						value={formData.category}
+						onChange={handleChange}
+					>
+						<option value="">Select Category</option>
+						{categories.map((category) => (
+							<option key={category._id} value={category._id}>
+								{category.category_name}
+							</option>
+						))}
+					</Form.Select>
+				</Form.Group>
+
+				<Form.Group className="mb-3">
+					<Form.Label>Base Price:</Form.Label>
+					<Form.Control
+						type="number"
+						name="basePrice"
+						value={formData.basePrice}
+						onChange={handleChange}
+					/>
+				</Form.Group>
+
+				<Form.Group className="mb-3">
+					<Form.Label>Sizes:</Form.Label>
+					<MultiSelect
+						options={extraPrices.map((extraPrice) => ({
+							label: `${extraPrice.name} - ${extraPrice.price}`,
+							value: extraPrice._id,
+						}))}
+						value={selectedSizes}
+						onChange={handleSizeChange}
+						labelledBy="Select Sizes"
+						disableSearch={true}
+					/>
+				</Form.Group>
+
+				<Form.Group className="mb-3">
+					<Form.Label>Extra Ingredient Prices:</Form.Label>
+					<MultiSelect
+						options={extraPrices.map((extraPrice) => ({
+							label: `${extraPrice.name} - ${extraPrice.price}`,
+							value: extraPrice._id,
+						}))}
+						value={selectedIngredients}
+						onChange={handleIngredientChange}
+						labelledBy="Select Extra Ingredients"
+						disableSearch={true}
+					/>
+				</Form.Group>
+
+				<Button type="submit">Create</Button>
+			</Form>
+		</div>
+	)
 }
 
-export default CreateMenuItem;
+export default CreateMenuItem
