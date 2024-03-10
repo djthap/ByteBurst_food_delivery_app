@@ -118,6 +118,13 @@ function CreateMenuItem() {
 
 			const data = await response.json()
 			alert('Created successfully')
+			setFormData({image: '',
+			name: '',
+			description: '',
+			category: '',
+			basePrice: '',
+			sizes: [],
+			extraIngredientPrices: [],})
 			console.log(data)
 		} catch (error) {
 			console.error('Error creating menu item:', error)
@@ -187,28 +194,32 @@ function CreateMenuItem() {
 				<Form.Group className="mb-3">
 					<Form.Label>Sizes:</Form.Label>
 					<MultiSelect
+						
 						options={extraPrices.map((extraPrice) => ({
-							label: `${extraPrice.name} - ${extraPrice.price}`,
+							label: `Name : ${extraPrice.name}    ||  Price :  ${extraPrice.price}`,
 							value: extraPrice._id,
 						}))}
 						value={selectedSizes}
 						onChange={handleSizeChange}
 						labelledBy="Select Sizes"
-						disableSearch={true}
+						hasSelectAll={false}
+						
 					/>
 				</Form.Group>
 
 				<Form.Group className="mb-3">
 					<Form.Label>Extra Ingredient Prices:</Form.Label>
 					<MultiSelect
+						style={{ color: 'black' }}
+						className="ddddd text-black"
 						options={extraPrices.map((extraPrice) => ({
-							label: `${extraPrice.name} - ${extraPrice.price}`,
+							label: `Name : ${extraPrice.name}    ||  Price :  ${extraPrice.price}`,
 							value: extraPrice._id,
 						}))}
 						value={selectedIngredients}
 						onChange={handleIngredientChange}
 						labelledBy="Select Extra Ingredients"
-						disableSearch={true}
+						hasSelectAll={false}
 					/>
 				</Form.Group>
 
