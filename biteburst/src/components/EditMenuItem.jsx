@@ -139,6 +139,8 @@ function EditMenuItem() {
                         <img
                             src={formData.image}
                             alt={formData.name}
+                            width={200}
+                            height={200}
                             className="edit-menu-item-image"
                         />
                     )}

@@ -1,8 +1,26 @@
-import React from 'react'
+import React, { useEffect ,useState } from 'react'
 import '../css/Home.css'
 import ProductLayout from './ProductLayout'
 
 export default function HomePage() {
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        fetchTopThreeProducts();
+    }, []);
+
+    const fetchTopThreeProducts = async () => {
+        try {
+            const response = await fetch('/api/menuItem/top3');
+            if (!response.ok) {
+                throw new Error('Failed to fetch top three products');
+            }
+            const data = await response.json();
+            setProducts(data);
+        } catch (error) {
+            console.error('Error fetching top three products:', error);
+        }
+    };
     return (
         <section>
             <section className="home-container">
@@ -16,7 +34,7 @@ export default function HomePage() {
             <section className="food-icons-container">
                 <h2 className="heading1">Want To Eat?</h2>
                 <div className=' pl-4 pr-4'>
-                    <div className="d-flex cat gx-0">
+                    <div className=" cat gx-0">
                         <div className="col-1 text-center">
                             <img
                                 src={'/pizzaIcon.png'}
@@ -92,7 +110,11 @@ export default function HomePage() {
             </section>
             <section>
                 <h2 className='heading1'>Our Most Popular Recipes</h2>
-                <ProductLayout/>
+                <div className="product-layout-container">
+                    {products.map(product => (
+                        <ProductLayout key={product._id} product={product} />
+                    ))}
+                </div>
             </section>
             <section className="testimonials-container">
                 <h2 className="heading1">Client Testimonials</h2>

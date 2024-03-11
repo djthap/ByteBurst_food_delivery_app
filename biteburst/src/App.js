@@ -17,6 +17,7 @@ import ManageExtraPrice from './routes/MangeExtraPrice/ManageExtraPrice'
 import AllMenuItems from './routes/allMenuItems/AllMenuItems'
 import EditMenuItem from './components/EditMenuItem'
 import Users from './components/Users'
+import Menu from './routes/Menu/Menu'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -59,6 +60,10 @@ function App() {
 				<Route
 					path="/manageCategory"
 					element={<Layout element={<ManageCategory />} />}
+				/>
+				<Route
+					path="/menu"
+					element={<Layout element={<Menu />} />}
 				/>
 				<Route
 					path="/createMenuitem"

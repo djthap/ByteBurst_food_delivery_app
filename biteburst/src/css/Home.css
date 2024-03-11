@@ -3,6 +3,10 @@
 .heading1 {
 	color: var(--bg-highlightColor);
 }
+.product-layout-container {
+	display: flex;
+	margin-left: 350px;
+}
 .home-container {
 	position: relative;
 	width: 100%;
@@ -109,6 +113,8 @@
 .food-icons-container {
 	text-align: center;
 	padding-left: 130px;
+	margin-top: 40px;
+	margin-bottom: 40px;
 	padding-right: 130px;
 }
 
@@ -129,7 +135,7 @@
 }
 
 .testimonial {
-	text-align: right;
+	text-align: center;
 	margin-right: 50px;
 }
 .cat {
@@ -153,4 +159,24 @@
 	font-size: 20px;
 	text-align: right;
 	margin-right: 10px;
+}
+.cat{
+	display: flex;
+}
+@media only screen and (max-width: 768px) {
+	.alignLeft {
+		padding-left: 7rem;
+	}
+	.terms {
+		display: block;
+		margin-left: 0px;
+	}
+	.product-layout-container {
+		display: block;
+		margin: 0%;
+	}
+	.cat {
+		display: block;
+		padding: 0%;
+	}
 }

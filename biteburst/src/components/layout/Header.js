@@ -12,7 +12,6 @@ export default function Header(loading, setloading) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false) // State to manage login status
 	console.log(loading)
 	useEffect(() => {
-		// Check if user is logged in using session storage
 		checkSession()
 	}, [loading])
 
@@ -63,7 +62,7 @@ export default function Header(loading, setloading) {
 							''
 						)}
 						<Nav.Link
-							href="/"
+							href="/menu"
 							className="space"
 							style={{ color: 'black' }}
 						>

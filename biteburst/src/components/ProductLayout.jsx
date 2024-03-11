@@ -1,22 +1,28 @@
 import React from 'react'
 import '../css/productLayout.css'
 
-export default function ProductLayout() {
-    return (
-        <div className='product-item'>
-            <img
-                src={'/pasta.png'}
-                alt={'pasta'}
-                className="img"
-            />
-            <div className="info">
-                <h3>Penne Pasta</h3>
-                <p>Penne Pasta topped with rich homemade tomato and cream sauce.</p>
-                <div class="price-and-button">
-                    <button>Add to cart</button>
-                    <p>$13.99</p>
-                </div>
-            </div>
-        </div>
-    )
+export default function ProductLayout({ product }) {
+	if (!product) {
+		return null
+	}
+
+	const { image, name, description, basePrice } = product
+
+	return (
+		<div className="product-item">
+			<h3>{name}</h3>
+			{image && (
+				<div className="image-container">
+					<img src={image} alt={name} className="img" />
+				</div>
+			)}
+			<div className="info">
+				{description && <p>{description}</p>}
+				<div className="price-and-button">
+					<button>View Product</button>
+					{basePrice && <p>${basePrice.toFixed(2)}</p>}
+				</div>
+			</div>
+		</div>
+	)
 }

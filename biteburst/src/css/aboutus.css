@@ -109,4 +109,8 @@
 	.alignLeft{
 		padding-left: 7rem;
 	}
+	.terms {
+		display: block;
+		margin-left: 0px;
+	}
 }
