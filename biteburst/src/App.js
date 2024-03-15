@@ -18,6 +18,7 @@ import AllMenuItems from './routes/allMenuItems/AllMenuItems'
 import EditMenuItem from './components/EditMenuItem'
 import Users from './components/Users'
 import Menu from './routes/Menu/Menu'
+import ViewProduct from './routes/ViewProduct/ViewProduct'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -72,6 +73,10 @@ function App() {
 				<Route
 					path="/editMenuitem/:id"
 					element={<Layout element={<EditMenuItem />} />}
+				/>
+				<Route
+					path="/viewitem/:id"
+					element={<Layout element={<ViewProduct/>} />}
 				/>
 				<Route
 					path="/manageMenuitem"

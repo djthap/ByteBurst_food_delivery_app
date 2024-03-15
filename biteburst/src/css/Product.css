@@ -1,0 +1,123 @@
+
+@import url(../libs/theme.css);
+
+.product-container {
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--bg-color);
+}
+
+.product-content {
+  display: flex;
+}
+
+.product-image-container {
+  flex: 1;
+}
+
+.product-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.product-details {
+  flex: 2;
+  padding-left: 20px;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.product-description {
+  margin-top: 10px;
+  color: var(--text-secondary-color);
+}
+
+.sizes-container {
+  margin-top: 20px;
+}
+
+.sizes-title {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.size-option {
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.size-option.selected {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+.toggle-ingredients {
+  margin-top: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+.toggle-text {
+  margin-right: 10px;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+}
+
+.arrow.up {
+  border-color: var(--primary-color) transparent transparent transparent;
+  margin-top: 3px;
+}
+
+.arrow.down {
+  border-color: transparent transparent var(--primary-color) transparent;
+  margin-bottom: 3px;
+}
+
+.ingredients-container {
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 20px;
+  background-color: var(--bg-color);
+}
+
+.ingredients-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+.ingredient-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.ingredient-item {
+  margin-bottom: 5px;
+  color: var(--text-color);
+}

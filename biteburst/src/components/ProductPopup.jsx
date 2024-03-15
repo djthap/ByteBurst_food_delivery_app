@@ -1,0 +1,178 @@
+import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import '../css/ProductPopup.css';
+
+function ProductPopup({ productId, onClose }) {
+    const [product, setProduct] = useState(null);
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedToppings, setSelectedToppings] = useState([]);
+
+    useEffect(() => {
+        fetch(`/api/menuItem/${productId}`)
+            .then((response) => response.json())
+            .then((data) => setProduct(data))
+            .catch((error) => console.error('Error fetching product:', error));
+    }, [productId]);
+
+    const handleAddToCart = () => {
+        if (!selectedSize) {
+            toast.error('Please select a size.');
+            return;
+        }
+
+        let totalPrice = selectedSize.price;
+        selectedToppings.forEach((topping) => {
+            totalPrice += topping.price;
+        });
+
+        toast.success(
+            `Added ${product.name} to cart. Total price: $${totalPrice.toFixed(
+                2
+            )}`
+        );
+    };
+
+    const handleSizeSelection = (size) => {
+        setSelectedSize(size);
+    };
+
+    const handleToppingToggle = (topping) => {
+        const isSelected = selectedToppings.some((t) => t.name === topping.name);
+        if (isSelected) {
+            setSelectedToppings(
+                selectedToppings.filter((t) => t.name !== topping.name)
+            );
+        } else {
+            setSelectedToppings([...selectedToppings, topping]);
+        }
+    };
+
+    return (
+        <div className="product-popup-container">
+            {product && (
+                <div className="product-popup-content">
+                    <div className="product-popup-image-container">
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            height={220}
+                            width={220}
+                            className="product-popup-image"
+                        />
+                    </div>
+                    <div className="product-details">
+                        <h2 className="product-popup-name">{product.name}</h2>
+                        <p className="product-popup-description">
+                            {product.description}
+                        </p>
+                        <p className="product-popup-category">
+                            Category: {product.category?.category_name}
+                        </p>
+                        <p className="product-popup-price">
+                            Base Price: ${product.basePrice}
+                        </p>
+                        <div className="product-popup-sizes">
+                            {product.sizes && product.sizes.length > 0 && (
+                                <div>
+                                    <h3>Select Size:</h3>
+                                    <ul className="product-popup-size-list">
+                                        {product.sizes.map((size, index) => (
+                                            <li
+                                                key={index}
+                                                className="product-popup-size-item"
+                                            >
+                                                <input
+                                                    type="radio"
+                                                    id={`size-${index}`}
+                                                    name="size"
+                                                    value={size.name}
+                                                    onChange={() =>
+                                                        handleSizeSelection(
+                                                            size
+                                                        )
+                                                    }
+                                                    checked={
+                                                        selectedSize &&
+                                                        selectedSize.name ===
+                                                            size.name
+                                                    }
+                                                />
+                                                <label htmlFor={`size-${index}`}>
+                                                    {size.name} - ${size.price}
+                                                </label>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+						<div className="product-popup-toppings">
+    {product.extraIngredientPrices &&
+        product.extraIngredientPrices.length > 0 && (
+            <div>
+                <h3>Select Extra Ingredients:</h3>
+                <ul className="product-popup-toppings-list">
+                    {product.extraIngredientPrices.map(
+                        (ingredient, index) => (
+                            <li
+                                key={index}
+                                className={
+                                    selectedToppings.some(
+                                        (t) =>
+                                            t.name ===
+                                            ingredient.name
+                                    )
+                                        ? 'selected'
+                                        : ''
+                                }
+                            >
+                                <input
+                                    type="checkbox"
+                                    id={`ingredient-${index}`}
+                                    value={ingredient.name}
+                                    onChange={() =>
+                                        handleToppingToggle(
+                                            ingredient
+                                        )
+                                    }
+                                    checked={
+                                        selectedToppings.some(
+                                            (t) =>
+                                                t.name ===
+                                                ingredient.name
+                                        )
+                                    }
+                                />
+                                <label htmlFor={`ingredient-${index}`}>
+                                    {ingredient.name} - ${ingredient.price}
+                                </label>
+                            </li>
+                        )
+                    )}
+                </ul>
+            </div>
+        )}
+</div>
+
+
+                        <div className="product-actions">
+                            <button
+                                className="custom-button"
+                                onClick={handleAddToCart}
+                            >
+                                Add to Cart
+                            </button>
+                            <button className="custom-button" onClick={onClose}>
+                                X
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            <ToastContainer />
+        </div>
+    );
+}
+
+export default ProductPopup;
