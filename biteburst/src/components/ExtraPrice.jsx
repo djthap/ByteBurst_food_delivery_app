@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import '../css/ExtraPrice.css';
 
 function ExtraPrice() {
@@ -9,6 +8,10 @@ function ExtraPrice() {
     price: '',
   });
   const [editingId, setEditingId] = useState(null);
+  const [editingData, setEditingData] = useState({
+    name: '',
+    price: '',
+  });
 
   useEffect(() => {
     fetchExtraPrices();
@@ -35,6 +38,44 @@ function ExtraPrice() {
     });
   };
 
+  const handleEdit = (id, name, price) => {
+    setEditingId(id);
+    setEditingData({ name, price });
+  };
+
+  const handleEditSubmit = async (id) => {
+    try {
+      const response = await fetch(`/api/extraPrice/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(editingData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update extra price');
+      }
+      setEditingId(null);
+      fetchExtraPrices(); // Refresh the list
+    } catch (error) {
+      console.error('Error updating extra price:', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/extraPrice/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete extra price');
+      }
+      setExtraPrices(extraPrices.filter((extraPrice) => extraPrice._id !== id));
+    } catch (error) {
+      console.error('Error deleting extra price:', error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -53,43 +94,6 @@ function ExtraPrice() {
       setFormData({ name: '', price: '' });
     } catch (error) {
       console.error('Error creating extra price:', error);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      const response = await fetch(`/api/extraPrice/${id}`, {
-        method: 'DELETE',
-      });
-      if (!response.ok) {
-        throw new Error('Failed to delete extra price');
-      }
-      setExtraPrices(extraPrices.filter((extraPrice) => extraPrice._id !== id));
-    } catch (error) {
-      console.error('Error deleting extra price:', error);
-    }
-  };
-
-  const handleEdit = (id) => {
-    setEditingId(id);
-  };
-
-  const handleEditSubmit = async (id, newName, newPrice) => {
-    try {
-      const response = await fetch(`/api/extraPrice/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: newName, price: newPrice }),
-      });
-      if (!response.ok) {
-        throw new Error('Failed to update extra price');
-      }
-      setEditingId(null);
-      fetchExtraPrices(); // Refresh the list
-    } catch (error) {
-      console.error('Error updating extra price:', error);
     }
   };
 
@@ -123,40 +127,34 @@ function ExtraPrice() {
                 <>
                   <input
                     type="text"
-                    defaultValue={extraPrice.name}
-                    ref={(input) => input && input.focus()}
-                    onBlur={(e) =>
-                      handleEditSubmit(
-                        extraPrice._id,
-                        e.target.value,
-                        extraPrice.price
-                      )
+                    value={editingData.name}
+                    onChange={(e) =>
+                      setEditingData({ ...editingData, name: e.target.value })
                     }
                   />
                   <input
                     type="number"
-                    defaultValue={extraPrice.price}
-                    onBlur={(e) =>
-                      handleEditSubmit(
-                        extraPrice._id,
-                        extraPrice.name,
-                        e.target.value
-                      )
+                    value={editingData.price}
+                    onChange={(e) =>
+                      setEditingData({ ...editingData, price: e.target.value })
                     }
                   />
+                  <button onClick={() => handleEditSubmit(extraPrice._id)}>
+                    Save
+                  </button>
                 </>
               ) : (
                 <>
                   <span>{extraPrice.name}</span>
                   <span>{extraPrice.price}</span>
+                  <button onClick={() => handleEdit(extraPrice._id, extraPrice.name, extraPrice.price)}>
+                    Edit
+                  </button>
+                  <button className="delete-button" onClick={() => handleDelete(extraPrice._id)}>
+                    Delete
+                  </button>
                 </>
               )}
-              <button onClick={() => handleEdit(extraPrice._id)}>
-                Edit
-              </button>
-              <button className="delete-button" onClick={() => handleDelete(extraPrice._id)}>
-                Delete
-              </button>
             </li>
           ))}
         </ul>
