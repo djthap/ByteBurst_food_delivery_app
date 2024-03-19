@@ -6,15 +6,19 @@ h3 {
 
 .footerinfo{
 	margin-top: 10px;
-	color: var(--text-highlightColor);
+	color:#ecdfd3;
 }
 
 .no-gutters {
 	--bs-gutter-x: 0;
 }
-ul {
-	list-style-type: none;
-	color: var(--text-highlightColor);
+
+#useful-link li{
+	list-style: none;
+	color: #ecdfd3;
+}
+.copyright-p{
+	color: #ecdfd3;
 }
 .mrr {
 	margin-right: 0;

@@ -110,7 +110,7 @@ export default function Header(loading, setloading) {
 							className="me-2"
 							aria-label="Search"
 						/>
-						<Button variant="outline-success highlight_menu">
+						<Button className='search-button' variant="outline-success highlight_menu">
 							Search
 						</Button>
 					</Form>

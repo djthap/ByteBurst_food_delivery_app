@@ -16,7 +16,7 @@ export default function Footer() {
 						ByteBrust: Where flavor meets convenience. Explore,
 						order, and indulge with ease on our website.
 					</p>
-					<div className="flex justify-left items-center">
+					<div className="flex">
 						<img
 							src={'/Visa.png'}
 							width={40}
@@ -43,13 +43,13 @@ export default function Footer() {
 				<div className="col-md-4 col-12">
 					<h3 className="text-xl font-semibold mb-4">USEFUL LINKS</h3>
 					<div className="row no-gutters pt-4 ">
-						<ul className="col-md-6 col-12">
+						<ul className="col-md-6 col-12" id='useful-link'>
 							<li>About</li>
 							<li>Menu</li>
 							<li>Testimonials</li>
 							<li>Contact Us</li>
 						</ul>
-						<ul className="col-md-6 col-12">
+						<ul className="col-md-6 col-12" id='useful-link'>
 							<li>Wishlist</li>
 							<li>Privacy Policy</li>
 							<li>Order Tracking</li>
@@ -119,7 +119,7 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className="flex justify-center mt-4">
-					<p>&copy; 2023 All rights reserved</p>
+					<p className='copyright-p'>&copy; 2023 All rights reserved</p>
 				</div>
 			</footer>
 		</>

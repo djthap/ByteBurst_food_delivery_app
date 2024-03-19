@@ -28,7 +28,7 @@ export default function HomePage() {
                     <h2>Food that makes you happy</h2>
                     <h5>Our job is to fill your tummy with delicious food with
                         fast and free delivery</h5>
-                    <button name='Order Now'>Order Now</button>
+                    <button className='order-now-button' name='Order Now'>Order Now</button>
                 </div>
             </section>
             <section className="food-icons-container">

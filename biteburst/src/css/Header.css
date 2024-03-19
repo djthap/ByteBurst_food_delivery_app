@@ -31,6 +31,22 @@
 	background-color: var(--bg-highlightColor);
 	color: #fff !important;
 }
+
+.search-button{
+	background-color: var(--bg-highlightColor);
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.search-button:hover{
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+}
+
 @media only screen and (min-width: 768px) {
 	.page {
 		min-height: 53vh;
