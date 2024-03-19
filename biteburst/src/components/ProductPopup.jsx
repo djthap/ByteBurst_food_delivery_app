@@ -63,98 +63,100 @@ function ProductPopup({ productId, onClose }) {
                     </div>
                     <div className="product-details">
                         <h2 className="product-popup-name">{product.name}</h2>
+                        <p className="product-popup-price">
+                            ${product.basePrice}
+                        </p>
                         <p className="product-popup-description">
                             {product.description}
                         </p>
+                        <hr></hr>
                         <p className="product-popup-category">
                             Category: {product.category?.category_name}
                         </p>
-                        <p className="product-popup-price">
-                            Base Price: ${product.basePrice}
-                        </p>
+
                         <div className="product-popup-sizes">
                             {product.sizes && product.sizes.length > 0 && (
                                 <div>
-                                    <h3>Select Size:</h3>
+                                    <h5>Select Size:</h5>
                                     <ul className="product-popup-size-list">
                                         {product.sizes.map((size, index) => (
                                             <li
                                                 key={index}
                                                 className="product-popup-size-item"
                                             >
-                                                <input
-                                                    type="radio"
-                                                    id={`size-${index}`}
-                                                    name="size"
-                                                    value={size.name}
-                                                    onChange={() =>
-                                                        handleSizeSelection(
-                                                            size
-                                                        )
-                                                    }
-                                                    checked={
-                                                        selectedSize &&
-                                                        selectedSize.name ===
-                                                            size.name
-                                                    }
-                                                />
-                                                <label htmlFor={`size-${index}`}>
-                                                    {size.name} - ${size.price}
+                                                <label htmlFor={`size-${index}`} className="product-popup-size-label">
+                                                    {size.name}
+                                                    
+                                                    <input
+                                                        type="radio"
+                                                        id={`size-${index}`}
+                                                        name="size"
+                                                        value={size.name}
+                                                        onChange={() => handleSizeSelection(size)}
+                                                        checked={selectedSize && selectedSize.name === size.name}
+                                                    />
+                                                    
                                                 </label>
+                                                <span className="size-price">+${size.price}</span>
+                                                <hr />
                                             </li>
+
                                         ))}
                                     </ul>
                                 </div>
                             )}
                         </div>
-						<div className="product-popup-toppings">
-    {product.extraIngredientPrices &&
-        product.extraIngredientPrices.length > 0 && (
-            <div>
-                <h3>Select Extra Ingredients:</h3>
-                <ul className="product-popup-toppings-list">
-                    {product.extraIngredientPrices.map(
-                        (ingredient, index) => (
-                            <li
-                                key={index}
-                                className={
-                                    selectedToppings.some(
-                                        (t) =>
-                                            t.name ===
-                                            ingredient.name
-                                    )
-                                        ? 'selected'
-                                        : ''
-                                }
-                            >
-                                <input
-                                    type="checkbox"
-                                    id={`ingredient-${index}`}
-                                    value={ingredient.name}
-                                    onChange={() =>
-                                        handleToppingToggle(
-                                            ingredient
-                                        )
-                                    }
-                                    checked={
-                                        selectedToppings.some(
-                                            (t) =>
-                                                t.name ===
-                                                ingredient.name
-                                        )
-                                    }
-                                />
-                                <label htmlFor={`ingredient-${index}`}>
-                                    {ingredient.name} - ${ingredient.price}
-                                </label>
-                            </li>
-                        )
-                    )}
-                </ul>
-            </div>
-        )}
-</div>
-
+                        <div className="product-popup-toppings">
+                            {product.extraIngredientPrices &&
+                                product.extraIngredientPrices.length > 0 && (
+                                    <div>
+                                        <h3>Select Extra Ingredients:</h3>
+                                        <ul className="product-popup-toppings-list">
+                                            {product.extraIngredientPrices.map(
+                                                (ingredient, index) => (
+                                                    <li
+                                                        key={index}
+                                                        className={
+                                                            selectedToppings.some(
+                                                                (t) =>
+                                                                    t.name ===
+                                                                    ingredient.name
+                                                            )
+                                                                ? 'selected'
+                                                                : ''
+                                                        }
+                                                    >
+                                                        <label htmlFor={`ingredient-${index}`} className="product-popup-size-label">
+                                                        {ingredient.name}
+                                                    
+                                                    <input
+                                                            type="checkbox"
+                                                            id={`ingredient-${index}`}
+                                                            value={ingredient.name}
+                                                            onChange={() =>
+                                                                handleToppingToggle(
+                                                                    ingredient
+                                                                )
+                                                            }
+                                                            checked={
+                                                                selectedToppings.some(
+                                                                    (t) =>
+                                                                        t.name ===
+                                                                        ingredient.name
+                                                                )
+                                                            }
+                                                        />
+                                                    
+                                                </label>
+                                                <span className="size-price">+${ingredient.price}</span>
+                                                <hr />
+                                                    </li>
+                                                )
+                                            )}
+                                        </ul>
+                                    </div>
+                                )}
+                        </div>
 
                         <div className="product-actions">
                             <button
