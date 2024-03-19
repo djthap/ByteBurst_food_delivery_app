@@ -12,6 +12,10 @@ router.put('/:id', isAuthenticated, menuItemController.updateMenuItem);
 
 router.delete('/:id', menuItemController.deleteMenuItem);
 
+
+router.get('/category/:categoryId', menuItemController.getMenuItemsByCategory);
+
+
 router.get('/:id', menuItemController.getMenuItemById);
 
 router.post('/uploadImage', menuItemController.uploadImage); // Add route for image upload

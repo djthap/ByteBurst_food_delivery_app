@@ -20,7 +20,7 @@ function MenuCard({ menuItem }) {
     }
 
     return (
-        <div className="custom-menu-item-card">
+        <div className="custom-menu-item-card ">
             <div className="custom-bookmark">
                 {menuItem?.category?.category_name || ''}
             </div>

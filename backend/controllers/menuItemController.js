@@ -174,6 +174,22 @@ const deleteMenuItem = async (req, res) => {
 		res.status(500).json({ error: 'Internal server error' })
 	}
 }
+const getMenuItemsByCategory = async (req, res) => {
+    try {
+        const categoryId = req.params.categoryId;
+
+        const menuItems = await MenuItem.find({ category: categoryId })
+            .populate('category', 'category_name')
+            .populate('sizes', 'name price')
+            .populate('extraIngredientPrices', 'name price')
+            .populate('createdBy', 'name');
+
+        res.status(200).json(menuItems);
+    } catch (error) {
+        console.error('Error filtering menu items by category:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};
 
 const getMenuItemById = async (req, res) => {
 	try {
@@ -199,4 +215,5 @@ module.exports = {
 	getMenuItemById,
 	getRandomMenuItems,
 	uploadImage,
+	getMenuItemsByCategory
 }
