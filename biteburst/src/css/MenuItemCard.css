@@ -27,6 +27,7 @@
 
 .custom-menu-item-title {
     /* font-weight: bold; */
+    color: var(--bg-highlightColor);
     margin-top: 5px;
     height: 60px;
 }

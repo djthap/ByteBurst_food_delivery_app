@@ -64,7 +64,7 @@ function ProductPopup({ productId, onClose }) {
                     <div className="product-details">
                         <h2 className="product-popup-name">{product.name}</h2>
                         <p className="product-popup-price">
-                            ${product.basePrice}
+                            ${product.basePrice.toFixed(2)}
                         </p>
                         <p className="product-popup-description">
                             {product.description}
@@ -86,7 +86,7 @@ function ProductPopup({ productId, onClose }) {
                                             >
                                                 <label htmlFor={`size-${index}`} className="product-popup-size-label">
                                                     {size.name}
-                                                    
+
                                                     <input
                                                         type="radio"
                                                         id={`size-${index}`}
@@ -95,9 +95,9 @@ function ProductPopup({ productId, onClose }) {
                                                         onChange={() => handleSizeSelection(size)}
                                                         checked={selectedSize && selectedSize.name === size.name}
                                                     />
-                                                    
+
                                                 </label>
-                                                <span className="size-price">+${size.price}</span>
+                                                <span className="size-price">+${size.price.toFixed(2)}</span>
                                                 <hr />
                                             </li>
 
@@ -110,7 +110,7 @@ function ProductPopup({ productId, onClose }) {
                             {product.extraIngredientPrices &&
                                 product.extraIngredientPrices.length > 0 && (
                                     <div>
-                                        <h3>Select Extra Ingredients:</h3>
+                                        <h5>Select Extra Ingredients:</h5>
                                         <ul className="product-popup-toppings-list">
                                             {product.extraIngredientPrices.map(
                                                 (ingredient, index) => (
@@ -127,29 +127,29 @@ function ProductPopup({ productId, onClose }) {
                                                         }
                                                     >
                                                         <label htmlFor={`ingredient-${index}`} className="product-popup-size-label">
-                                                        {ingredient.name}
-                                                    
-                                                    <input
-                                                            type="checkbox"
-                                                            id={`ingredient-${index}`}
-                                                            value={ingredient.name}
-                                                            onChange={() =>
-                                                                handleToppingToggle(
-                                                                    ingredient
-                                                                )
-                                                            }
-                                                            checked={
-                                                                selectedToppings.some(
-                                                                    (t) =>
-                                                                        t.name ===
-                                                                        ingredient.name
-                                                                )
-                                                            }
-                                                        />
-                                                    
-                                                </label>
-                                                <span className="size-price">+${ingredient.price}</span>
-                                                <hr />
+                                                            {ingredient.name}
+
+                                                            <input
+                                                                type="checkbox"
+                                                                id={`ingredient-${index}`}
+                                                                value={ingredient.name}
+                                                                onChange={() =>
+                                                                    handleToppingToggle(
+                                                                        ingredient
+                                                                    )
+                                                                }
+                                                                checked={
+                                                                    selectedToppings.some(
+                                                                        (t) =>
+                                                                            t.name ===
+                                                                            ingredient.name
+                                                                    )
+                                                                }
+                                                            />
+
+                                                        </label>
+                                                        <span className="size-price">+${ingredient.price.toFixed(2)}</span>
+                                                        <hr />
                                                     </li>
                                                 )
                                             )}

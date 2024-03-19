@@ -32,17 +32,15 @@ function MenuCard({ menuItem }) {
                 height={250}
                 className="custom-menu-item-image"
             />
-            <h3 className="custom-menu-item-title">{menuItem?.name || ''}</h3>
-            <p className="custom-menu-item-description">
-                {truncateDescription(menuItem.description)}
-            </p>
+            <h4 className="custom-menu-item-title">{menuItem?.name || ''}</h4>
+            
 
             <p className="custom-menu-item-price">
                 Base Price: ${menuItem?.basePrice ?? ''}
             </p>
 
             <button className="custom-button" onClick={togglePopup}>
-                View
+                +
             </button>
 
             {showPopup && (
