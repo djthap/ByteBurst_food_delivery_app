@@ -76,7 +76,7 @@ export default function Header(loading, setloading) {
 							ABOUT
 						</Nav.Link>
 						<Nav.Link
-							href="/"
+							href="/ContactUs"
 							className="space"
 							style={{ color: 'black' }}
 						>

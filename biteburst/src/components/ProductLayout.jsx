@@ -1,12 +1,13 @@
 import React from 'react'
 import '../css/productLayout.css'
+import { Link } from 'react-router-dom'
 
 export default function ProductLayout({ product }) {
 	if (!product) {
 		return null
 	}
 
-	const { image, name, description, basePrice } = product
+	const { image, name, description, basePrice,_id } = product
 
 	return (
 		<div className="product-item">
@@ -19,7 +20,7 @@ export default function ProductLayout({ product }) {
 			<div className="info"> 
 				{description && <p>{description}</p>}
 				<div className="price-and-button">
-					<button className='view-button'>View Product</button>
+					<Link className='view-button' to={`/viewitem/${_id}`}>View Product</Link>
 					{basePrice && <p>${basePrice.toFixed(2)}</p>}
 				</div>
 			</div>

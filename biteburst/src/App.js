@@ -21,6 +21,7 @@ import Menu from './routes/Menu/Menu'
 import ViewProduct from './routes/ViewProduct/ViewProduct'
 import AdminLogin from './routes/AdminLogin/AdminLogin'
 import Cart from './routes/Cart/Cart'
+import ContactUs from './routes/ContactUs/ContactUs'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -98,6 +99,10 @@ function App() {
 				<Route
 					path="/viewitem/:id"
 					element={<Layout element={<ViewProduct/>} />}
+				/>
+				<Route
+					path="/contactUs"
+					element={<Layout element={<ContactUs/>} />}
 				/>
 				<Route
 					path="/manageMenuitem"
