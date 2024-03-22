@@ -7,6 +7,7 @@ function ProductPopup({ productId, onClose }) {
     const [product, setProduct] = useState(null);
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedToppings, setSelectedToppings] = useState([]);
+    const [quantity, setQuantity] = useState(1);
 
     useEffect(() => {
         fetch(`/api/menuItem/${productId}`)
@@ -15,21 +16,38 @@ function ProductPopup({ productId, onClose }) {
             .catch((error) => console.error('Error fetching product:', error));
     }, [productId]);
 
+    useEffect(() => {
+        // Set selectedSize to the first available size when product changes
+        if (product && product.sizes && product.sizes.length > 0) {
+            setSelectedSize(product.sizes[0]);
+        }
+    }, [product]);
+
     const handleAddToCart = () => {
         if (!selectedSize) {
             toast.error('Please select a size.');
             return;
         }
 
-        let totalPrice = selectedSize.price;
+        let totalPrice = product.basePrice + selectedSize.price;
         selectedToppings.forEach((topping) => {
             totalPrice += topping.price;
         });
 
+        const cartItem = {
+            product: product,
+            selectedSize: selectedSize,
+            selectedToppings: selectedToppings,
+            totalPrice: totalPrice,
+            quantity: quantity
+        };
+
+        const existingCart = JSON.parse(sessionStorage.getItem('cart')) || [];
+        existingCart.push(cartItem);
+        sessionStorage.setItem('cart', JSON.stringify(existingCart));
+
         toast.success(
-            `Added ${product.name} to cart. Total price: $${totalPrice.toFixed(
-                2
-            )}`
+            `Added ${product.name} to cart. Total price: $${totalPrice.toFixed(2)}`
         );
     };
 
@@ -45,6 +63,12 @@ function ProductPopup({ productId, onClose }) {
             );
         } else {
             setSelectedToppings([...selectedToppings, topping]);
+        }
+    };
+
+    const handleQuantityChange = (increment) => {
+        if (quantity + increment > 0) {
+            setQuantity(quantity + increment);
         }
     };
 
@@ -159,6 +183,11 @@ function ProductPopup({ productId, onClose }) {
                         </div>
 
                         <div className="product-actions">
+                            <div className="quantity-control">
+                                <button className="decrement" onClick={() => handleQuantityChange(-1)}>-</button>
+                                <span className="quantity">{quantity}</span>
+                                <button className="increment" onClick={() => handleQuantityChange(1)}>+</button>
+                            </div>
                             <button
                                 className="custom-button"
                                 onClick={handleAddToCart}

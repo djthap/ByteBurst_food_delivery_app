@@ -82,6 +82,13 @@ export default function Header(loading, setloading) {
 						>
 							CONTACT US
 						</Nav.Link>
+						<Nav.Link
+							href="/Cart"
+							className="space"
+							style={{ color: 'black' }}
+						>
+							CART
+						</Nav.Link>
 					</Nav>
 					<Form className="d-flex mf">
 						{isLoggedIn ? (

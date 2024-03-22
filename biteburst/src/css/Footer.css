@@ -12,7 +12,9 @@ h3 {
 .no-gutters {
 	--bs-gutter-x: 0;
 }
-
+.ll{
+	text-decoration: none;
+}
 #useful-link li{
 	list-style: none;
 	color: #ecdfd3;

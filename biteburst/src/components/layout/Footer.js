@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import '../..//css/Footer.css'
 
 export default function Footer() {
@@ -44,6 +45,7 @@ export default function Footer() {
 					<h3 className="text-xl font-semibold mb-4">USEFUL LINKS</h3>
 					<div className="row no-gutters pt-4 ">
 						<ul className="col-md-6 col-12" id='useful-link'>
+							<li><Link to={"/AdminLogin"} className='ll'>Admin Login</Link></li>
 							<li>About</li>
 							<li>Menu</li>
 							<li>Testimonials</li>

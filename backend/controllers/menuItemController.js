@@ -60,7 +60,7 @@ const getAllMenuItems = async (req, res) => {
 const getRandomMenuItems = async (req, res) => {
 	try {
 		const randomMenuItems = await MenuItem.aggregate([
-			{ $sample: { size: 3 } },
+			{ $sample: { size: 4 } },
 		])
 
 		res.status(200).json(randomMenuItems)

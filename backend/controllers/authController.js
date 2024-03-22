@@ -134,7 +134,6 @@ const registerUser = async (req, res) => {
             return res.status(400).json({ message: 'Invalid Credentials' });
         }
 
-        // Check if the user has admin role
         if (user.role !== 'Admin') {
             return res.status(403).json({ message: 'Access Denied' });
         }
@@ -152,11 +151,11 @@ const registerUser = async (req, res) => {
 
         jwt.sign(
             payload,
-            'this-is-our-web-app', // Change this to your actual secret key
+            'this-is-our-web-app', 
             { expiresIn: 36000 },
             (error, token) => {
                 if (error) throw error;
-                res.status(200).json({ token });
+                res.status(200).json({ token ,user});
             }
         );
     } catch (error) {

@@ -19,6 +19,8 @@ import EditMenuItem from './components/EditMenuItem'
 import Users from './components/Users'
 import Menu from './routes/Menu/Menu'
 import ViewProduct from './routes/ViewProduct/ViewProduct'
+import AdminLogin from './routes/AdminLogin/AdminLogin'
+import Cart from './routes/Cart/Cart'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -43,8 +45,27 @@ function App() {
 					}
 				/>
 				<Route
+					path="/AdminLogin"
+					element={
+						<Layout
+							loading={loading}
+							setloading={setloading}
+							element={
+								<AdminLogin
+									loading={loading}
+									setloading={setloading}
+								/>
+							}
+						/>
+					}
+				/>
+				<Route
 					path="/SignUp"
 					element={<Layout element={<Register />} />}
+				/>
+				<Route
+					path="/Cart"
+					element={<Layout element={<Cart />} />}
 				/>
 				<Route
 					path="/aboutUs"
