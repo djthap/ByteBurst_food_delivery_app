@@ -33,27 +33,29 @@ function MenuCard({ menuItem }) {
                 className="custom-menu-item-image"
             />
             <h4 className="custom-menu-item-title">{menuItem?.name || ''}</h4>
-            
 
-            <p className="custom-menu-item-price">
-                Base Price: ${menuItem?.basePrice ?? ''}
-            </p>
+            <div className='menu-price-button'>
+                <p className="custom-menu-item-price">
+                    Base Price: ${menuItem?.basePrice ?? ''}
+                </p>
 
-            <button className="custom-button" onClick={togglePopup}>
-                +
-            </button>
+                <button className="custom-button-plus" onClick={togglePopup}>
+                    +
+                </button>
+            </div>
+
 
             {showPopup && (
                 <div className="custom-popup-overlay">
                     <div className="custom-popup">
-                    <ProductPopup productId={menuItem._id} onClose={togglePopup} />
+                        <ProductPopup productId={menuItem._id} onClose={togglePopup} />
                         <button className="custom-close-btn" onClick={togglePopup}>
                             Close
                         </button>
                     </div>
                 </div>
             )}
-            
+
         </div>
     );
 }

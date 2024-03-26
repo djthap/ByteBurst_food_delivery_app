@@ -33,7 +33,7 @@ function CartPage() {
 
     return (
         <div className="cart-container">
-            <h2>Your Shopping Cart</h2>
+            <h2 className='cart-heading'>Your Shopping Cart</h2>
             {cartItems.length === 0 ? (
                 <p>Your cart is empty.</p>
             ) : (

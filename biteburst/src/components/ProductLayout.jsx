@@ -11,7 +11,10 @@ export default function ProductLayout({ product }) {
 
 	return (
 		<div className="product-item">
-			<h3>{name}</h3>
+			<div className='product-name-container'>
+				<h3>{name}</h3>
+			</div>
+			
 			{image && (
 				<div className="image-container">
 					<img src={image} alt={name} className="img" />
