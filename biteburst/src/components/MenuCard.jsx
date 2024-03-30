@@ -20,8 +20,8 @@ function MenuCard({ menuItem }) {
     }
 
     return (
-        <div className="custom-menu-item-card ">
-            <div className="custom-bookmark">
+        <div className="menu-item-card ">
+            <div className="category-name-bookmark">
                 {menuItem?.category?.category_name || ''}
             </div>
 
@@ -30,16 +30,16 @@ function MenuCard({ menuItem }) {
                 alt={menuItem?.name || ''}
                 width={200}
                 height={250}
-                className="custom-menu-item-image"
+                className="menu-item-image"
             />
-            <h4 className="custom-menu-item-title">{menuItem?.name || ''}</h4>
+            <h4 className="menu-item-title">{menuItem?.name || ''}</h4>
 
             <div className='menu-price-button'>
-                <p className="custom-menu-item-price">
-                    Base Price: ${menuItem?.basePrice ?? ''}
+                <p className="menu-item-price">
+                    Base Price: ${menuItem?.basePrice.toFixed(2) ?? ''}
                 </p>
 
-                <button className="custom-button-plus" onClick={togglePopup}>
+                <button className="menu-button-plus" onClick={togglePopup}>
                     +
                 </button>
             </div>

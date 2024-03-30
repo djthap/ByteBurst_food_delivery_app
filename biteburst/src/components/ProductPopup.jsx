@@ -88,7 +88,12 @@ function ProductPopup({ productId, onClose }) {
 						/>
 					</div>
 					<div className="product-details">
-						<h2 className="product-popup-name">{product.name}</h2>
+						<div className='product-name-and-close-button'>
+							<h2 className="product-popup-name">{product.name}</h2>
+							<button className="close-popup-button" onClick={onClose}>
+									X
+							</button>
+						</div>
 						<p className="product-popup-price">
 							${product.basePrice.toFixed(2)}
 						</p>
@@ -219,13 +224,10 @@ function ProductPopup({ productId, onClose }) {
 								</button>
 							</div>
 							<button
-								className="custom-button"
+								className="add-to-cart-popup-button"
 								onClick={handleAddToCart}
 							>
 								Add to Cart
-							</button>
-							<button className="custom-button" onClick={onClose}>
-								X
 							</button>
 						</div>
 					</div>

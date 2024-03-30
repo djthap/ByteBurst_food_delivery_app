@@ -46,7 +46,6 @@ export default function Header(loading, setloading) {
 						<Nav.Link
 							href="/"
 							className="space"
-							style={{ color: 'black' }}
 						>
 							HOME
 						</Nav.Link>
@@ -54,7 +53,6 @@ export default function Header(loading, setloading) {
 							<Nav.Link
 								href="/adminDashboard"
 								className="space"
-								style={{ color: 'black' }}
 							>
 								Admin's Dashboard
 							</Nav.Link>
@@ -64,28 +62,24 @@ export default function Header(loading, setloading) {
 						<Nav.Link
 							href="/menu"
 							className="space"
-							style={{ color: 'black' }}
 						>
 							MENU
 						</Nav.Link>
 						<Nav.Link
 							href="/aboutUs"
 							className="space"
-							style={{ color: 'black' }}
 						>
 							ABOUT
 						</Nav.Link>
 						<Nav.Link
 							href="/ContactUs"
 							className="space"
-							style={{ color: 'black' }}
 						>
 							CONTACT US
 						</Nav.Link>
 						<Nav.Link
 							href="/Cart"
 							className="space"
-							style={{ color: 'black' }}
 						>
 							CART
 						</Nav.Link>
