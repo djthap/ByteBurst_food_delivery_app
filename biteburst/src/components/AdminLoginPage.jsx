@@ -26,7 +26,7 @@ function AdminLoginPage({loading,setloading}) {
 				console.log(data)
 				sessionStorage.setItem('token', data.token);
 				sessionStorage.setItem('user', JSON.stringify(data.user));
-				
+				setloading(true)
 				alert('Login successful');
 			
 		} catch (error) {

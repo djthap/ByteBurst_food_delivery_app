@@ -27,6 +27,7 @@ export default function Header(loading, setloading) {
 		sessionStorage.removeItem('token')
 		setIsLoggedIn(false)
 	}
+	const user = JSON.parse(sessionStorage.getItem('user'));
 
 	return (
 		<Navbar expand="lg" className="bg-body-tertiary text-dark">
@@ -49,7 +50,7 @@ export default function Header(loading, setloading) {
 						>
 							HOME
 						</Nav.Link>
-						{isLoggedIn ? (
+						{isLoggedIn && (user.role==="Restaurant" || user.role === "Admin") ? (
 							<Nav.Link
 								href="/adminDashboard"
 								className="space"
