@@ -3,14 +3,12 @@
 .product-item {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	align-items: center;
 	width: 300px;
-	height: 520px;
-	text-align: left;
+	height: 550px;
 	margin-bottom: 20px;
 	padding: 10px;
-	color: var(--bg-highlightColor);
+	color: var(--heading-text);
 	margin-left: 20px;
 	border-radius: 10px;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -23,7 +21,7 @@
 }
 
 .product-name-container{
-	height: 30px;
+	height: 70px;
 }
 .image-container{
 	height: 210px;
@@ -40,12 +38,14 @@
 	padding: 0 10px;
 	text-align: center;
 }
+.description-container{
+	height: 200px;
+}
 
 .price-and-button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	height: 40px;
 }
 
 .view-button {
@@ -55,6 +55,7 @@
 	padding: 8px 16px;
 	border-radius: 5px;
 	cursor: pointer;
+	text-decoration: none;
 }
 
 .view-button:hover {

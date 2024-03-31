@@ -21,7 +21,9 @@ export default function ProductLayout({ product }) {
 				</div>
 			)}
 			<div className="info"> 
-				{description && <p>{description}</p>}
+				<div className='description-container'>
+					{description && <p>{description}</p>}
+				</div>
 				<div className="price-and-button">
 					<Link className='view-button' to={`/viewitem/${_id}`}>View Product</Link>
 					{basePrice && <p>${basePrice.toFixed(2)}</p>}
