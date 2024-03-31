@@ -66,7 +66,7 @@ function Users() {
 
     return (
         <div className="users-container">
-            <h2>List of Users</h2>
+            <h2 className='admin-user-list-heading'>List of Users</h2>
             <ul className="user-list">
                 {users.map((user) => (
                     <li

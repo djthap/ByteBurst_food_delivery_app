@@ -33,7 +33,7 @@ function CartPage() {
 
     return (
         <div className="cart-container">
-            <h2>Your Shopping Cart</h2>
+            <h2 className='cart-heading'>Your Shopping Cart</h2>
             {cartItems.length === 0 ? (
                 <p>Your cart is empty.</p>
             ) : (
@@ -51,13 +51,13 @@ function CartPage() {
                             {cartItems.map((item, index) => (
                                 <tr key={index}>
                                     <td>
-                                        <div className="item-info">
+                                        <div className="cart-item-info">
                                             <img
                                                 src={item.product.image}
                                                 alt={item.product.name}
-                                                className="item-image"
+                                                className="cart-item-image"
                                             />
-                                            <div className="item-details">
+                                            <div className="cart-item-details">
                                                 <h3>{item.product.name}</h3>
                                                 <p>Size: {item.selectedSize.name}</p>
                                             </div>
@@ -71,13 +71,13 @@ function CartPage() {
                                         </div>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleRemoveFromCart(index)}>Remove</button>
+                                        <button className='cart-remove-button' onClick={() => handleRemoveFromCart(index)}>Remove</button>
                                     </td>
                                     <td>${item.totalPrice.toFixed(2)}</td>
                                 </tr>
                             ))}
                             <tr>
-                                <td colSpan="3" className="text-right">Total Price:</td>
+                                <td colSpan="3" className="text-right">Total Price : </td>
                                 <td>${totalPrice.toFixed(2)}</td>
                             </tr>
                         </tbody>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../css/MenuItemCard.css';
+import '../css/AllMenuItems.css';
 import { Link } from 'react-router-dom';
 
 function MenuItemCard({ menuItem, onEdit, onDelete }) {
@@ -20,7 +20,7 @@ function MenuItemCard({ menuItem, onEdit, onDelete }) {
     };
 
     return (
-        <div className="menu-item-card">
+        <div className="admin-menu-item-card">
             <h3>{menuItem?.name || ''}</h3>
             <img
                 src={menuItem?.image || ''}
@@ -28,18 +28,19 @@ function MenuItemCard({ menuItem, onEdit, onDelete }) {
                 style={{ width: '200px', height: '200px' }}
             />
 
-            <p>{menuItem?.description || ''}</p>
+            <p className='admin-menu-description'>{menuItem?.description || ''}</p>
+            <div className='admin-menu-other-element'>
             <p>Category: {menuItem?.category?.category_name || ''}</p>
             <p>Base Price: ${menuItem?.basePrice ?? ''}</p>
-            <div className="size-list">
+            <div className="admin-menu-size-list">
                 {menuItem?.sizes.map((size) => (
                     <span key={size._id} className="size">
-                        {size.name}
+                        {size.name}{'  '}
                     </span>
                 ))}
-            </div>
-            <Link className='ll' to={`/editMenuItem/${menuItem?._id}`}>Edit</Link>
-            <button onClick={() => handleDelete(menuItem?._id)}>Delete</button>
+            </div></div>
+            <Link className='admin-menu-edit-button'  to={`/editMenuItem/${menuItem?._id}`}>Edit</Link>
+            <button  onClick={() => handleDelete(menuItem?._id)}>Delete</button>
         </div>
     );
 }

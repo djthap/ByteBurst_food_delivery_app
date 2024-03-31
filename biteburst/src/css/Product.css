@@ -1,4 +1,8 @@
-.product-page-container {
+
+@import url(../libs/theme.css);
+
+.product-container {
+  margin: 20px auto;
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;

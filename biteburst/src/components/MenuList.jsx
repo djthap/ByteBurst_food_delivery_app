@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MenuCard from './MenuCard';
-import '../css/AllMenuItems.css';
 import '../css/MenuList.css';
 
 function MenuList() {
@@ -44,18 +43,18 @@ function MenuList() {
     };
 
     return (
-        <div>
+        <div className='menu-list-container'>
             <h2>Menu</h2>
             <div className="all-menu-items22">
                 <div className="category-list">
                     <h2>Categories</h2>
                     <ul>
                         <li>
-                            <button onClick={() => fetchMenuItems()}>All Products</button>
+                            <button className='menu-categories-button' onClick={() => fetchMenuItems()}>All Products</button>
                         </li>
                         {categories.map((category) => (
                             <li key={category._id}>
-                                <button onClick={() => fetchMenuItems(category._id)}>
+                                <button className='menu-categories-button' onClick={() => fetchMenuItems(category._id)}>
                                     {category.category_name}
                                 </button>
                             </li>

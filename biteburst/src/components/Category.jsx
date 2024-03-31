@@ -110,7 +110,7 @@ function Category() {
 	return (
 		<div className="dashboard-container">
 			<div className="create-category-section">
-				<h2>Create New Category</h2>
+				<h2 className='admin-category-heading'>Create New Category</h2>
 				<div className="create-category-form">
 					<input
 						type="text"
@@ -123,7 +123,7 @@ function Category() {
 				</div>
 			</div>
 			<div className="category-list-section ">
-				<h2>All Categories</h2>
+				<h2 className='admin-category-heading'>All Categories</h2>
 				<div className="category-list">
 					{categories.map((category) => (
 						<div className="category-item" key={category._id}>

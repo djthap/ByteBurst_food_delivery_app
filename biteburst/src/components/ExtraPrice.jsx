@@ -146,11 +146,11 @@ function ExtraPrice() {
               ) : (
                 <>
                   <span>{extraPrice.name}</span>
-                  <span>{extraPrice.price}</span>
+                  <span>Price : ${extraPrice.price}</span>
                   <button onClick={() => handleEdit(extraPrice._id, extraPrice.name, extraPrice.price)}>
                     Edit
                   </button>
-                  <button className="delete-button" onClick={() => handleDelete(extraPrice._id)}>
+                  <button className="extra-price-delete-button" onClick={() => handleDelete(extraPrice._id)}>
                     Delete
                   </button>
                 </>
