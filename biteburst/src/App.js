@@ -22,6 +22,8 @@ import ViewProduct from './routes/ViewProduct/ViewProduct'
 import AdminLogin from './routes/AdminLogin/AdminLogin'
 import Cart from './routes/Cart/Cart'
 import ContactUs from './routes/ContactUs/ContactUs'
+import Checkout from './routes/Checkout/Checkout'
+import AllOrders from './routes/orders/AllOrders'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -73,6 +75,10 @@ function App() {
 					element={<Layout element={<AboutUs />} />}
 				/>
 				<Route
+					path="/orders"
+					element={<Layout element={<AllOrders />} />}
+				/>
+				<Route
 					path="/adminDashboard"
 					element={<Layout element={<Dashboard />} />}
 				/>
@@ -83,6 +89,10 @@ function App() {
 				<Route
 					path="/manageCategory"
 					element={<Layout element={<ManageCategory />} />}
+				/>
+				<Route
+					path="/Checkout"
+					element={<Layout element={<Checkout />} />}
 				/>
 				<Route
 					path="/menu"

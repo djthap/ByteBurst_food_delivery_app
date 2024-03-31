@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Cart.css';
+import { Link } from 'react-router-dom';
 
 function CartPage() {
     const [cartItems, setCartItems] = useState([]);
@@ -79,6 +80,20 @@ function CartPage() {
                             <tr>
                                 <td colSpan="3" className="text-right">Total Price : </td>
                                 <td>${totalPrice.toFixed(2)}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                <Link
+				to={{
+					pathname: '/checkout',
+					state: { cartItems: cartItems }, // Pass cartItems data via state
+				}}
+			>
+				 <button className="cart-remove-button">Proceed to Checkout</button>
+			</Link>
+            
+                                </td>
+                               
                             </tr>
                         </tbody>
                     </table>

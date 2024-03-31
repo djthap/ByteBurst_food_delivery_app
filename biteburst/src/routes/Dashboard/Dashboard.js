@@ -26,6 +26,9 @@ function Dashboard() {
                 <li>
                     <Link to="/manageUsers">Manage Users</Link>
                 </li>
+                <li>
+                    <Link to="/orders">All orders</Link>
+                </li>
                     </>
                 )}
                
@@ -40,7 +43,9 @@ function Dashboard() {
                     <li>
                         <Link to="/ManageExtraPrice">Manage Extra Prices</Link>
                     </li>
-               
+                    <li>
+                    <Link to="/orders">All orders</Link>
+                </li>
                     </>
                 )}
             </ul>
