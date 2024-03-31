@@ -30,7 +30,7 @@ export default function Header(loading, setloading) {
 	const user = JSON.parse(sessionStorage.getItem('user'));
 
 	return (
-		<Navbar expand="lg" className="bg-body-tertiary text-dark">
+		<Navbar expand="lg" className="text-dark nav-bg">
 			<Container fluid>
 				<Navbar.Brand href="/" className='logo_bg'>
 					<img

@@ -1,6 +1,8 @@
 @import url(../libs/theme.css);
 
-
+.nav-bg{
+	background-color: #c5a68f;
+}
 .logo_bg {
 	background-color: var(--bg-highlightColor);
 	padding-right: 8px;
