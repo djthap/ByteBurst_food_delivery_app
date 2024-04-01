@@ -48,6 +48,9 @@ function Dashboard() {
                 </li>
                     </>
                 )}
+                <li>
+                    <Link to="/profile">Update profile</Link>
+                </li>
             </ul>
         </div>
     );

@@ -84,6 +84,12 @@ export default function Header(loading, setloading) {
 						>
 							CART
 						</Nav.Link>
+						<Nav.Link
+							href="/profile"
+							className="space"
+						>
+							Profile
+						</Nav.Link>
 					</Nav>
 					<Form className="d-flex mf">
 						{isLoggedIn ? (
