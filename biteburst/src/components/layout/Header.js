@@ -91,41 +91,45 @@
 								Search
 							</Button>
 						<Nav.Link
-								href="/Cart"
-								className="cart"
-							>
-								<img
-                                src={'/cart-icon.png'}
-                                width={30}
-                                height={30}
-                                alt={'Cart'}
-                                className="icon"
-                            />
-							</Nav.Link>
-							{isLoggedIn ? (
-								<Nav className="ml-2 mr-2">
-									<Button
-										variant="outline-danger"
-										onClick={handleLogout}
-										className=""
-									>
-										Logout
-									</Button>
-								</Nav>
-							) : (
-								<Nav className="ml-2 mr-2">
-									<NavLink
-										to={'/Login'}
-										className="text-decoration-none login-btn"
-									>
-										LOGIN
-									</NavLink>
-								</Nav>
-							)}
-							
-						</Form>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
-		)
-	}
+							href="/Cart"
+							className="space"
+						>
+							CART
+						</Nav.Link>
+					</Nav>
+					<Form className="d-flex mf">
+						{isLoggedIn ? (
+							<Nav className="ml-2 mr-2">
+								<Button
+									variant="outline-danger"
+									onClick={handleLogout}
+									className=""
+								>
+									Logout
+								</Button>
+							</Nav>
+						) : (
+							<Nav className="ml-2 space">
+								<NavLink
+									to={'/Login'}
+									className="text-decoration-none space"
+								>
+									LOGIN
+								</NavLink>
+							</Nav>
+						)}
+						<Form.Control
+							type="search"
+							placeholder="Search"
+							className="me-2"
+							aria-label="Search"
+						/>
+						<Button className='search-button' variant="outline-success highlight_menu">
+							Search
+						</Button>
+					</Form>
+				</Navbar.Collapse>
+			</Container>
+		</Navbar>
+	)
+}

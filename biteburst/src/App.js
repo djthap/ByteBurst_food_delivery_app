@@ -24,6 +24,7 @@ import Cart from './routes/Cart/Cart'
 import ContactUs from './routes/ContactUs/ContactUs'
 import Checkout from './routes/Checkout/Checkout'
 import AllOrders from './routes/orders/AllOrders'
+import ProfilePage from './routes/Profile/ProfilePage'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -81,6 +82,10 @@ function App() {
 				<Route
 					path="/adminDashboard"
 					element={<Layout element={<Dashboard />} />}
+				/>
+				<Route
+					path="/profile"
+					element={<Layout element={<ProfilePage />} />}
 				/>
 				<Route
 					path="/manageUsers"
