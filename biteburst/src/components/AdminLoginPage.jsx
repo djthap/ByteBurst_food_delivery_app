@@ -24,10 +24,16 @@ function AdminLoginPage({loading,setloading}) {
 			const data = await response.json();
 	
 				console.log(data)
-				sessionStorage.setItem('token', data.token);
-				sessionStorage.setItem('user', JSON.stringify(data.user));
-				setloading(true)
-				alert('Login successful');
+				if(data.user!=undefined){
+
+					sessionStorage.setItem('token', data.token);
+					sessionStorage.setItem('user', JSON.stringify(data.user));
+					setloading(true)
+					alert('Login successful');
+				}else{
+					alert("login Credentials Wrong")
+				}
+
 			
 		} catch (error) {
 			console.error('Login error:', error);
