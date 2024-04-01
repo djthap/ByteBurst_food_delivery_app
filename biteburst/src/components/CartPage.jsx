@@ -82,7 +82,7 @@ function CartPage() {
                                 <td>${totalPrice.toFixed(2)}</td>
                             </tr>
                             <tr>
-                                <td>
+                                <td colSpan="4">
                                 <Link
 				to={{
 					pathname: '/checkout',

@@ -78,6 +78,9 @@
 	margin-bottom: 5px;
 	text-decoration: none;
 }
+.topping-li{
+	text-decoration: none;
+}
 
 .product-popup-toppings-list li.selected {
 	border-radius: 5px;

@@ -55,7 +55,7 @@
 									href="/adminDashboard"
 									className="space"
 								>
-									Admin's Dashboard
+									DASHBOARD
 								</Nav.Link>
 							) : (
 								''
@@ -90,6 +90,18 @@
 							<Button className='search-button' variant="outline-success highlight_menu">
 								Search
 							</Button>
+							<Nav.Link
+								href="/Profile"
+								className="cart"
+							>
+								<img
+                                src={'/person-icon.png'}
+                                width={30}
+                                height={30}
+                                alt={'PersonProfile'}
+                                className="icon"
+                            />
+							</Nav.Link>
 						<Nav.Link
 								href="/Cart"
 								className="cart"

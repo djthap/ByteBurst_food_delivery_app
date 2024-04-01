@@ -1,7 +1,10 @@
+@import url(../libs/theme.css);
 .orders-container {
 	margin: 20px;
 }
-
+.orders-container h1{
+	color: var(--heading-text);
+}
 .orders-table {
 	width: 100%;
 	border-collapse: collapse;

@@ -166,7 +166,7 @@ function ProductPopup({ productId, onClose }) {
 															)
 																? 'selected'
 																: ''
-														}
+														} topping-li
 													>
 														<label
 															htmlFor={`ingredient-${index}`}

@@ -20,15 +20,12 @@ export default function ProductLayout({ product }) {
 					<img src={image} alt={name} className="img" />
 				</div>
 			)}
-			<div className="info"> 
-				<div className='description-container'>
-					{description && <p>{description}</p>}
-				</div>
+				
 				<div className="price-and-button">
 					<Link className='view-button' to={`/viewitem/${_id}`}>View Product</Link>
-					{basePrice && <p>${basePrice.toFixed(2)}</p>}
+					{basePrice && <p className='base-price'>${basePrice.toFixed(2)}</p>}
 				</div>
-			</div>
+
 		</div>
 	)
 }
