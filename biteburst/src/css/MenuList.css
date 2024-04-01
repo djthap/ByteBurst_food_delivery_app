@@ -10,6 +10,7 @@
 	border-radius: 5px;
 	padding: 10px 20px;
 	cursor: pointer;
+	width: 130px;
 }
 .menu-categories-button:hover{
 	background-color: var(--button-hover-color);
