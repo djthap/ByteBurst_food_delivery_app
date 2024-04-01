@@ -5,14 +5,9 @@
 }
 .logo_bg {
 	background-color: var(--bg-highlightColor);
-	padding-right: 8px;
-	padding-left: 8px;
 }
 
 .space {
-	padding-right: 4px;
-	padding-top: 4px;
-	padding-left: 4px;
 	margin-right: 6px;
 	font-weight: bold;
 	color: var(--heading-text);
@@ -21,7 +16,7 @@
 	text-decoration: none;
 	cursor: pointer;
 	background-color: var(--bg-highlightColor);
-	color: #fff !important;
+	color: #fff;
 }
 
 .search-button{
@@ -37,6 +32,24 @@
 	background-color: white;
 	color: black;
 	border: 1px solid black;
+}
+.cart{
+	align-content: center;
+}
+.login-btn{
+	font-weight: bold;
+	color: var(--heading-text);
+	align-content: center;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+.login-btn:hover {
+	text-decoration: none;
+	cursor: pointer;
+	padding-left: 8px;
+	padding-right: 8px;
+	background-color: var(--bg-highlightColor);
+	color: #fff;
 }
 
 @media only screen and (min-width: 768px) {

@@ -1,3 +1,4 @@
+@import url(../libs/theme.css);
 .header {
 	background-color: #333;
 	color: #fff;
@@ -14,8 +15,10 @@
 
 .checkout-heading {
 	text-align: center;
-	font-size: 24px;
-	color: #333;
+	color: var(--heading-text);
+}
+.checkout-sub-heading{
+	color: var(--button-hover-color);
 }
 
 .checkout-content {
@@ -43,15 +46,16 @@ input[type='text'] {
 	box-sizing: border-box;
 }
 
-.place-order-btn {
-	display: block;
-	margin: 0 auto;
-	background-color: #007bff;
-	color: #fff;
+.place-order-button {
+	background-color: var(--button-color);
+	color: #fff; 
 	border: none;
+	border-radius: 5px;
 	padding: 10px 20px;
-	font-size: 16px;
 	cursor: pointer;
+}
+.place-order-button:hover{
+	background-color: var(--button-hover-color);
 }
 
 /* CheckoutPage.css */

@@ -107,7 +107,7 @@ function CheckoutPage() {
 				<h1 className="checkout-heading">Checkout</h1>
 				<div className="checkout-content">
 					<div className="checkout-cart">
-						<h2>Your Cart</h2>
+						<h2 className="checkout-sub-heading">Your Cart</h2>
 						<table>
 							<thead>
 								<tr>
@@ -187,7 +187,7 @@ function CheckoutPage() {
 					</div>
 					<div className="checkout-shipping">
 						<form onSubmit={handleSubmit}>
-							<h2>Shipping Address</h2>
+							<h2 className="checkout-sub-heading">Shipping Address</h2>
 							<input
 								type="text"
 								name="phoneNumber"
@@ -204,7 +204,7 @@ function CheckoutPage() {
 								onChange={handleChange}
 								required
 							/>
-							<h2>Card Details</h2>
+							<h2 className="checkout-sub-heading">Card Details</h2>
 							<input
 								type="text"
 								name="cardHolderName"
@@ -252,7 +252,7 @@ function CheckoutPage() {
 							</div>
 							<button
 								type="submit"
-								className="cart-remove-button"
+								className="place-order-button"
 							>
 								Place Order
 							</button>
