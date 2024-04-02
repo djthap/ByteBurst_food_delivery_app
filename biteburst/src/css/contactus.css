@@ -1,13 +1,12 @@
 @import url(../libs/theme.css);
 
- 
 .contactusPara2 {
 	padding-top: 2rem;
-	 height: 400px; 
-	 background-color: var(--bg-highlightColor);
+	height: 400px;
+	background-color: var(--bg-highlightColor);
 	color: var(--text-highlightColor);
-	color:antiquewhite;
-} 
+	color: antiquewhite;
+}
 .contactusPara3 {
 	padding: 3rem;
 	/* height: 400px; */
@@ -30,66 +29,60 @@
 	font-family: emoji;
 	font-size: 36px;
 }
- form#contact-form {
+form#contact-form {
 	background-color: #f1f1f1;
 	padding: 20px;
 	border-radius: 5px;
 	width: 50%;
 	margin: 0 auto;
-  }
-  form#contact-form h2 {
+}
+form#contact-form h2 {
 	text-align: center;
 	margin-bottom: 15px;
-	
-  }   
-  
-   form#contact-form label {
+}
+
+form#contact-form label {
 	display: block;
 	margin-bottom: 5px;
-  } 
-  .form-group {
+}
+.form-group {
 	display: flex; /* Add this line */
 	margin-bottom: 15px; /* Adjust as needed */
 	/* margin-top: 20px; */
-  }
-  
-   form#contact-form input,
-  form#contact-form textarea {
+}
+
+form#contact-form input,
+form#contact-form textarea {
 	width: 100%;
 	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	margin-bottom: 15px;
-  } 
-  
-   form#contact-form textarea {
+}
+
+form#contact-form textarea {
 	height: 150px;
-  }
-  
-  form#contact-form button {
-	background-color: #4CAF50;
+}
+
+form#contact-form button {
+	background-color: #4caf50;
 	color: white;
 	padding: 10px 20px;
 	border: none;
 	border-radius: 3px;
 	cursor: pointer;
-  }
-  
-  form#contact-form button:hover {
+}
+
+form#contact-form button:hover {
 	background-color: #3e8e41;
-  } 
-  
+}
+
 .paint-stroke {
 	position: relative;
 	width: 100%;
 	height: 15px;
-	background: linear-gradient(
-		to right,
-		transparent,
-		#523a28,
-		transparent
-	); 
-} 
+	background: linear-gradient(to right, transparent, #523a28, transparent);
+}
 
 .dd {
 	display: block;
@@ -101,6 +94,16 @@
 .head {
 	font-size: 40px;
 	text-align: center;
+}
+.mbutton {
+	padding: 7px;
+	/* padding-left: 25px; */
+	/* margin-top: 20px; */
+	cursor: pointer;
+
+	/* border-radius: 5px; */
+	color: #f0f0f0;
+	background-color: #523a28;
 }
 .head2 {
 	color: var(--bg-highlightColor);
@@ -136,8 +139,8 @@
 	padding: 10px;
 }
 .termimg {
-	height: 70px ;
-	width: 70px ;
+	height: 70px;
+	width: 70px;
 	margin-left: 35%;
 	margin-right: 35%;
 	margin-top: 15%;
@@ -151,7 +154,7 @@
 	padding-right: 20px;
 }
 @media only screen and (max-width: 768px) {
-	.alignLeft{
+	.alignLeft {
 		padding-left: 7rem;
 	}
 	.terms {
