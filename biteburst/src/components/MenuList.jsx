@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import MenuCard from './MenuCard';
 import '../css/MenuList.css';
 
-function MenuList() {
+function MenuList({loading,setloading}) {
     const [menuItems, setMenuItems] = useState([]);
     const [categories, setCategories] = useState([]);
 
@@ -64,7 +64,7 @@ function MenuList() {
                 <div className="menu-item-list22 row gx-0">
                     {menuItems.map((menuItem) => (
                         <div className={`col-md-${Math.floor(12 / Math.min(menuItems.length, 4))}`} key={menuItem._id}>
-                            <MenuCard menuItem={menuItem} />
+                            <MenuCard menuItem={menuItem}  loading={loading} setloading={setloading}/>
                         </div>
                     ))}
                 </div>

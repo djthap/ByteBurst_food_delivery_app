@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import ProductPopup from './ProductPopup';
 
-function MenuCard({ menuItem }) {
+function MenuCard({ menuItem  ,loading , setloading}) {
     const [showPopup, setShowPopup] = useState(false);
 
     const togglePopup = () => {
@@ -48,7 +48,7 @@ function MenuCard({ menuItem }) {
             {showPopup && (
                 <div className="custom-popup-overlay">
                     <div className="custom-popup">
-                        <ProductPopup productId={menuItem._id} onClose={togglePopup} />
+                        <ProductPopup productId={menuItem._id}  loading={loading} setloading={setloading} onClose={togglePopup} />
                         <button className="custom-close-btn" onClick={togglePopup}>
                             Close
                         </button>
