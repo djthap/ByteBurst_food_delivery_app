@@ -1,14 +1,25 @@
 import React from 'react'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState,useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import '../css/Login.css'
-function LoginPage({ loading, setloading }) {
+function LoginPage({ setRedirectTo, loading, setloading }) {
+	const navigate = useNavigate()
 	const fetch = require('isomorphic-fetch')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [loginInProgress, setLoginInProgress] = useState(false)
 	const [error, setError] = useState('')
-
+	useEffect(() => {
+		
+		redirect();
+	}, [])
+	const redirect =()=>{
+		if (sessionStorage.getItem('token')) {
+			return navigate('/', { replace: true })
+		}
+	}
 	async function handleFormSubmit(ev) {
 		ev.preventDefault()
 		setLoginInProgress(true)
@@ -27,7 +38,8 @@ function LoginPage({ loading, setloading }) {
 				sessionStorage.setItem('token', data.token)
 				sessionStorage.setItem('user', JSON.stringify(data.user))
 				setloading(true)
-				alert('Login successful')
+				toast.success('Login successful')
+				navigate('/', { replace: true })
 			} else {
 				setError(data.message || 'Login failed')
 			}
@@ -37,9 +49,17 @@ function LoginPage({ loading, setloading }) {
 		}
 		setLoginInProgress(false)
 	}
+
+	
+
+	// Check if already logged in
+	if (sessionStorage.getItem('token')) {
+		return navigate('/', { replace: true })
+	}
 	return (
 		<section className="mt-8">
 			<h1 className="text-center  text-4xl mb-4 heading ">LOGIN</h1>
+			<ToastContainer />
 			<form className="admin-form-group" onSubmit={handleFormSubmit}>
 				<input
 					type="email"

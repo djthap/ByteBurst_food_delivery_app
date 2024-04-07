@@ -6,14 +6,15 @@ import Nav from 'react-bootstrap/Nav'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import '../../css/Header.css'
+import Search from '../Search'
 
 export default function Header({ loading, setloading }) {
 	const [isLoggedIn, setIsLoggedIn] = useState(false) // State to manage login status
-
+	const updateCartCount = () => {
+		setCartCount(getCartCount())
+	}
 	useEffect(() => {
-		const updateCartCount = () => {
-			setCartCount(getCartCount())
-		}
+		updateCartCount()
 		const cart = sessionStorage.getItem('cart')
 		window.addEventListener('storage', updateCartCount)
 		checkSession()
@@ -84,18 +85,7 @@ export default function Header({ loading, setloading }) {
 						</Nav.Link>
 					</Nav>
 					<Form className="d-flex mf">
-						<Form.Control
-							type="search"
-							placeholder="Search"
-							className="me-2"
-							aria-label="Search"
-						/>
-						<Button
-							className="search-button"
-							variant="outline-success highlight_menu"
-						>
-							Search
-						</Button>
+						<Search/>
 
 						<div className="cart-icon">
 							<Nav.Link href="/Cart" className="cart">

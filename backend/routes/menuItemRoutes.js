@@ -12,6 +12,8 @@ router.put('/:id', isAuthenticated, menuItemController.updateMenuItem);
 
 router.delete('/:id', menuItemController.deleteMenuItem);
 
+router.get('/search', menuItemController.searchMenuItemsByName);
+
 
 router.get('/category/:categoryId', menuItemController.getMenuItemsByCategory);
 
