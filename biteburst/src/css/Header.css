@@ -6,11 +6,15 @@
 .logo_bg {
 	background-color: var(--bg-highlightColor);
 }
+.cart-icon {
+	position: relative;
+	padding-right: 0px;
+}
 
 .badge {
 	position: absolute;
-	top: 15px;
-	right: 75px;
+	top: 0px;
+	right: 0px;
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
@@ -51,6 +55,8 @@
 .cart {
 	/* align-content: center; */
 	padding-top: 10px;
+	padding-right: 0px !important;
+	padding-left: 0px !important;
 }
 .login-btn {
 	font-weight: bold;

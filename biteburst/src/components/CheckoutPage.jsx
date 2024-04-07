@@ -16,6 +16,11 @@ function CheckoutPage() {
 	const [cartItems, setCartItems] = useState([])
 	const [paymentMethod, setPaymentMethod] = useState('card') // Default to card payment
 
+	// Validation flags
+	const [cardNumberError, setCardNumberError] = useState('')
+	const [cvvError, setCVVError] = useState('')
+	const [expiryDateError, setExpiryDateError] = useState('')
+
 	useEffect(() => {
 		const storedCart = JSON.parse(sessionStorage.getItem('cart')) || []
 		setCartItems(storedCart)
@@ -39,37 +44,38 @@ function CheckoutPage() {
 
 	const totalPrice = cartItems.reduce((acc, item) => acc + item.totalPrice, 0)
 
-	const location = useLocation()
-
 	const handleChange = (e) => {
 		const { name, value } = e.target
-        if (name === 'phoneNumber') {
-           
-            if (!/^\d{10}$/.test(value)) {
-               
-                toast.error('Please enter a valid phone number (10 digits)');
-                return;
-            }
-        }
-    
-        if (name === 'address') {
-            
-            if (value.trim().length === 0) {
-              
-                toast.error('Please enter your address');
-                return;
-            }
-        }
 		setShippingInfo({ ...shippingInfo, [name]: value })
-	}
 
-	const handlePaymentMethodChange = (e) => {
-		setPaymentMethod(e.target.value)
+		// Clear previous errors when user starts typing
+		if (name === 'cardNumber') setCardNumberError('')
+		if (name === 'cvv') setCVVError('')
+		if (name === 'expiryDate') setExpiryDateError('')
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		console.log(cartItems.map((item) => item.product._id))
+
+		// Validate card information
+		const validCardNumber = validateCardNumber(shippingInfo.cardNumber)
+		const validCVV = validateCVV(shippingInfo.cvv)
+		const validExpiryDate = validateExpiryDate(shippingInfo.expiryDate)
+
+		if (!validCardNumber) {
+			setCardNumberError('Please enter a valid card number')
+			return
+		}
+		if (!validCVV) {
+			setCVVError('Please enter a valid CVV')
+			return
+		}
+		if (!validExpiryDate) {
+			setExpiryDateError('Please enter a valid expiry date')
+			return
+		}
+
+		// Continue with submission if all validations pass
 		try {
 			const response = await fetch('/api/orderRoutes/', {
 				method: 'POST',
@@ -93,6 +99,9 @@ function CheckoutPage() {
 			}
 			console.log('order placed successfully')
 			setCartItems([])
+			setCVVError("")
+			setExpiryDateError("")
+			setCardNumberError("")
 			sessionStorage.removeItem('cart')
 			toast.success('Order placed successfully')
 		} catch (error) {
@@ -100,6 +109,23 @@ function CheckoutPage() {
 			toast.error('Failed to place order')
 		}
 	}
+
+	// Validation functions
+	function validateCardNumber(cardNumber) {
+		// Simple check for now (16 digits)
+		return /^\d{16}$/.test(cardNumber)
+	}
+
+	function validateCVV(cvv) {
+		// Simple check for now (3 or 4 digits)
+		return /^\d{3}$/.test(cvv)
+	}
+
+	function validateExpiryDate(expiryDate) {
+		// Simple check for now (MM/YY format)
+		return /^\d{2}\/\d{4}$/.test(expiryDate)
+	}
+
 	return (
 		<div>
 			<div className="checkout-container">
@@ -187,13 +213,18 @@ function CheckoutPage() {
 					</div>
 					<div className="checkout-shipping">
 						<form onSubmit={handleSubmit}>
-							<h2 className="checkout-sub-heading">Shipping Address</h2>
+							<h2 className="checkout-sub-heading">
+								Shipping Address
+							</h2>
+
 							<input
 								type="text"
 								name="phoneNumber"
 								placeholder="Phone Number"
 								value={shippingInfo.phoneNumber}
 								onChange={handleChange}
+								pattern="[0-9]*"
+								maxLength={10}
 								required
 							/>
 							<input
@@ -204,7 +235,13 @@ function CheckoutPage() {
 								onChange={handleChange}
 								required
 							/>
-							<h2 className="checkout-sub-heading">Card Details</h2>
+
+							<h2 className="checkout-sub-heading">
+								Card Details
+							</h2>
+							<div className="error-message">
+								{cardNumberError}
+							</div>
 							<input
 								type="text"
 								name="cardHolderName"
@@ -221,35 +258,27 @@ function CheckoutPage() {
 								onChange={handleChange}
 								required
 							/>
+							<div className="error-message">{cvvError}</div>
 							<input
 								type="text"
 								name="cvv"
-								placeholder="CVV"
+								placeholder="123"
 								value={shippingInfo.cvv}
 								onChange={handleChange}
 								required
 							/>
+							<div className="error-message">
+								{expiryDateError}
+							</div>
 							<input
 								type="text"
 								name="expiryDate"
-								placeholder="Expiry Date"
+								placeholder="MM/YY"
 								value={shippingInfo.expiryDate}
 								onChange={handleChange}
 								required
 							/>
 
-							<div className="dsd">
-								<input
-									type="radio"
-									id="cod"
-									name="paymentMethod"
-									value="cod"
-									checked={paymentMethod === 'cod'}
-									onChange={handlePaymentMethodChange}
-									required
-								/>
-								<label htmlFor="cod">Cash on Delivery</label>
-							</div>
 							<button
 								type="submit"
 								className="place-order-button"

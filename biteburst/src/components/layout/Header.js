@@ -8,47 +8,44 @@ import Button from 'react-bootstrap/Button'
 import '../../css/Header.css'
 
 export default function Header({ loading, setloading }) {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [cartCount, setCartCount] = useState(0);
+	const [isLoggedIn, setIsLoggedIn] = useState(false) // State to manage login status
 
-    useEffect(() => {
-        const updateCartCount = () => {
-            setCartCount(getCartCount());
-        };
+	useEffect(() => {
+		const updateCartCount = () => {
+			setCartCount(getCartCount())
+		}
+		const cart = sessionStorage.getItem('cart')
+		window.addEventListener('storage', updateCartCount)
+		checkSession()
+		getCartCount()
+		console.log('Effect triggered because loading changed.')
 
-        window.addEventListener('storage', updateCartCount);
-        updateCartCount();
+		return () => {
+			window.removeEventListener('storage', updateCartCount)
+		}
+	}, [loading])
+	const checkSession = () => {
+		const userLoggedIn =
+			sessionStorage.getItem('user') && sessionStorage.getItem('token')
+		setIsLoggedIn(userLoggedIn)
+		// setloading(false)
+	}
+	const getCartCount = () => {
+		const cart = sessionStorage.getItem('cart')
+		if (cart) {
+			const cartItems = JSON.parse(cart)
+			return cartItems.reduce((count, item) => count + item.quantity, 0)
+		}
+		return 0
+	}
 
-        return () => {
-            window.removeEventListener('storage', updateCartCount);
-        };
-    }, []);
-
-    useEffect(() => {
-        const cart = sessionStorage.getItem('cart');
-        if (cart) {
-            const cartItems = JSON.parse(cart);
-            const count = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-            setCartCount(count);
-        }
-    }, [loading]);
-
-    const getCartCount = () => {
-        const cart = sessionStorage.getItem('cart');
-        if (cart) {
-            const cartItems = JSON.parse(cart);
-            return cartItems.reduce((count, item) => count + item.quantity, 0);
-        }
-        return 0;
-    };
-
-    const handleLogout = () => {
-        sessionStorage.removeItem('user');
-        sessionStorage.removeItem('token');
-        setIsLoggedIn(false);
-    };
-
-    const user = JSON.parse(sessionStorage.getItem('user'));
+	const [cartCount, setCartCount] = useState(getCartCount())
+	const handleLogout = () => {
+		sessionStorage.removeItem('user')
+		sessionStorage.removeItem('token')
+		setIsLoggedIn(false)
+	}
+	const user = JSON.parse(sessionStorage.getItem('user'))
 
 	return (
 		<Navbar expand="lg" className="text-dark nav-bg">
@@ -99,7 +96,8 @@ export default function Header({ loading, setloading }) {
 						>
 							Search
 						</Button>
-						<div>
+
+						<div className="cart-icon">
 							<Nav.Link href="/Cart" className="cart">
 								<span className="badge">{cartCount}</span>
 								<img
@@ -114,6 +112,15 @@ export default function Header({ loading, setloading }) {
 
 						{isLoggedIn ? (
 							<Nav className="ml-2 mr-2">
+								<Nav.Link href="/Profile" className="cart">
+									<img
+										src={'/person-icon.png'}
+										width={30}
+										height={30}
+										alt={'PersonProfile'}
+										className="icon"
+									/>
+								</Nav.Link>
 								<Button
 									variant="outline-danger"
 									onClick={handleLogout}
