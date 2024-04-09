@@ -5,14 +5,21 @@ import { Link } from 'react-router-dom';
 function MenuItemCard({ menuItem, onEdit, onDelete }) {
     const handleDelete = async (id) => {
         try {
+            const confirmed = window.confirm("Are you sure you want to delete this menu item?");
+            if (!confirmed) {
+                return; // User cancelled the deletion
+            }
+            
             const response = await fetch(`/api/menuItem/${id}`, {
                 method: 'DELETE',
             });
+            
             if (!response.ok) {
                 throw new Error('Failed to delete menu item');
             }
+            
             // Call the onDelete function passed from the parent component to update the state or perform any other action
-            alert("Deleted successfully")
+            alert("Deleted successfully");
             window.location.href = '/manageMenuitem';
         } catch (error) {
             console.error('Error deleting menu item:', error);

@@ -5,6 +5,7 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const menuItemRoutes = require('./routes/menuItemRoutes');
 const extraPriceRoutes = require('./routes/extrapriceRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const contactUsRoutes = require('./routes/contactUsRoutes');
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use('/api/categories', categoryRoutes);
 app.use('/api/menuItem', menuItemRoutes);
 app.use('/api/extraPrice', extraPriceRoutes);
 app.use('/api/orderRoutes', orderRoutes);
+app.use('/api/contactUsRoutes', contactUsRoutes);
 
 const PORT = process.env.PORT || 5002;
 

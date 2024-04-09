@@ -47,24 +47,32 @@ function Category() {
 			toast.error('Failed to create category')
 		}
 	}
-
 	const handleDeleteCategory = async (categoryId) => {
 		try {
+			const confirmed = window.confirm("Are you sure you want to delete this category?");
+			if (!confirmed) {
+				return; // User cancelled the deletion
+			}
+	
 			const response = await fetch(`/api/categories/${categoryId}`, {
 				method: 'DELETE',
-			})
+			});
+			
 			if (!response.ok) {
-				throw new Error('Failed to delete category')
+				throw new Error('Failed to delete category');
 			}
+			
 			setCategories(
 				categories.filter((category) => category._id !== categoryId)
-			)
-			toast.success('Category deleted successfully')
+			);
+			
+			toast.success('Category deleted successfully');
 		} catch (error) {
-			console.error('Error deleting category:', error)
-			toast.error('Failed to delete category')
+			console.error('Error deleting category:', error);
+			toast.error('Failed to delete category');
 		}
-	}
+	};
+	
 
 	const handleEditCategory = (categoryId, categoryName) => {
 		setEditingCategoryId(categoryId)
