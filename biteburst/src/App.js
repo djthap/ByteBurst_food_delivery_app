@@ -25,6 +25,7 @@ import ContactUs from './routes/ContactUs/ContactUs'
 import Checkout from './routes/Checkout/Checkout'
 import AllOrders from './routes/orders/AllOrders'
 import ProfilePage from './routes/Profile/ProfilePage'
+import MyOrders from './routes/orders/MyOrders'
 
 function App() {
 	const [loading, setloading] = useState(false)
@@ -86,6 +87,11 @@ function App() {
 					setloading={setloading} element={<AllOrders />} />}
 				/>
 				<Route
+					path="/Myorders"
+					element={<Layout loading={loading}
+					setloading={setloading} element={<MyOrders />} />}
+				/>
+				<Route
 					path="/adminDashboard"
 					element={<Layout loading={loading}
 					setloading={setloading} element={<Dashboard />} />}
@@ -108,7 +114,8 @@ function App() {
 				<Route
 					path="/Checkout"
 					element={<Layout loading={loading}
-					setloading={setloading} element={<Checkout />} />}
+					setloading={setloading} element={<Checkout loading={loading}
+					setloading={setloading} />} />}
 				/>
 				<Route
 					path="/menu"

@@ -6,7 +6,7 @@ const isAuthenticated = require('../middleware/authMiddleware');
 router.get('/', menuItemController.getAllMenuItems);
 router.get('/top3', menuItemController.getRandomMenuItems);
 
-router.post('/', menuItemController.createMenuItem);
+router.post('/',isAuthenticated, menuItemController.createMenuItem);
 
 router.put('/:id', isAuthenticated, menuItemController.updateMenuItem);
 

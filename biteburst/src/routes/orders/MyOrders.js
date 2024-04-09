@@ -3,7 +3,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import '../../css/AllOrders.css'
 
-function AllOrders() {
+function MyOrders() {
 	const [orders, setOrders] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState(null)
@@ -13,20 +13,24 @@ function AllOrders() {
 	}, [])
 
 	const fetchOrders = async () => {
-		try {
-			const response = await fetch('/api/orderRoutes')
-			if (!response.ok) {
-				throw new Error('Failed to fetch orders')
-			}
-			const data = await response.json()
-			setOrders(data)
-			setLoading(false)
-		} catch (error) {
-			console.error('Error fetching orders:', error)
-			setError('Error fetching orders. Please try again later.')
-			setLoading(false)
-		}
-	}
+        try {
+            const userId = sessionStorage.getItem('user') ? JSON.parse(sessionStorage.getItem('user'))._id : null;
+            if (!userId) {
+                throw new Error('User ID not found in session');
+            }
+            const response = await fetch(`/api/orderRoutes/userOrders/${userId}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch orders');
+            }
+            const data = await response.json();
+            setOrders(data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+            setError('Error fetching orders. Please try again later.');
+            setLoading(false);
+        }
+    }
 
 	const updateOrderStatus = async (orderId, status) => {
 		try {
@@ -63,7 +67,11 @@ function AllOrders() {
 
 	return (
 		<div className="orders-container">
+            <ToastContainer />
 			<h1>All Orders</h1>
+            {orders.length === 0 ? (
+            <div>No orders yet</div>
+        ) : (
 			<table className="orders-table">
 				<thead>
 					<tr>
@@ -74,7 +82,7 @@ function AllOrders() {
 						<th>Total Price</th>
 						<th>Order Type</th>
 						<th>Status</th>
-						<th>Action</th>
+						
 					</tr>
 				</thead>
 				<tbody>
@@ -96,43 +104,18 @@ function AllOrders() {
 							<td>${order.totalPrice.toFixed(2)}</td>
 							<td>Cash On Delivery</td>
 							<td>{order.status}</td>
-							<td>
-								{order.status !== 'delivered' ? (
-									<select
-										value={order.status}
-										onChange={(e) =>
-											updateOrderStatus(
-												order._id,
-												e.target.value
-											)
-										}
-									>
-										<option value="pending">Pending</option>
-										<option value="ready to deliver">
-											Ready to Deliver
-										</option>
-										<option value="delivered">
-											Delivered
-										</option>
-									</select>
-								) : (
-									<select disabled>
-										<option value={order.status}>
-											{order.status}
-										</option>
-									</select>
-								)}
-							</td>
+							
 						</tr>
 					))}
 				</tbody>
 			</table>
-			<ToastContainer />
+        )}
+			
 		</div>
 	)
 }
 
-export default AllOrders
+export default MyOrders
 
 function getBackgroundColor(status) {
 	switch (status) {

@@ -1,8 +1,9 @@
 import React from 'react'
 import CheckoutPage from '../../components/CheckoutPage'
 
-export default function Checkout() {
+export default function Checkout({loading, setloading}) {
   return (
-    <div><CheckoutPage/></div>
+    <div><CheckoutPage loading={loading}
+    setloading={setloading} /></div>
   )
 }

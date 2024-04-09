@@ -65,15 +65,8 @@ export default function Header({ loading, setloading }) {
 						<Nav.Link href="/" className="space">
 							HOME
 						</Nav.Link>
-						{isLoggedIn &&
-						(user.role === 'Restaurant' ||
-							user.role === 'Admin') ? (
-							<Nav.Link href="/adminDashboard" className="space">
-								DASHBOARD
-							</Nav.Link>
-						) : (
-							''
-						)}
+						
+					
 						<Nav.Link href="/menu" className="space">
 							MENU
 						</Nav.Link>
@@ -83,6 +76,23 @@ export default function Header({ loading, setloading }) {
 						<Nav.Link href="/ContactUs" className="space">
 							CONTACT US
 						</Nav.Link>
+						{isLoggedIn &&
+						(user.role === 'User' ) ? (
+							<Nav.Link href="/myorders" className="space">
+								MY ORDERS
+							</Nav.Link>
+						) : (
+							''
+						)}
+						{isLoggedIn &&
+						(user.role === 'Restaurant' ||
+							user.role === 'Admin') ? (
+							<Nav.Link href="/adminDashboard" className="space">
+								DASHBOARD
+							</Nav.Link>
+						) : (
+							''
+						)}
 					</Nav>
 					<Form className="d-flex mf">
 						<Search/>

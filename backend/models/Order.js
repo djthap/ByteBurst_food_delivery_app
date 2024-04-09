@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { Schema } = mongoose;
 
 const orderSchema = new mongoose.Schema({
 	phoneNumber: String,
@@ -9,6 +10,8 @@ const orderSchema = new mongoose.Schema({
 	expiryDate: String,
 	totalPrice: Number,
 	items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' }],
+	createdBy: { type: Schema.Types.ObjectId, ref: 'User' }, 
+	updatedBy:{ type: Schema.Types.ObjectId, ref: 'User' },
 	status: {
 		type: String,
 	},

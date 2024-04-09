@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import '../css/CheckoutPage.css'
 
-function CheckoutPage() {
+function CheckoutPage({loading,setloading}) {
 	const [shippingInfo, setShippingInfo] = useState({
 		phoneNumber: '',
 		address: '',
@@ -80,8 +80,9 @@ function CheckoutPage() {
 			const response = await fetch('/api/orderRoutes/', {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json',
-				},
+                    'Content-Type': 'application/json',
+                    Authorization: `${sessionStorage.getItem('token')}`,
+                },
 				body: JSON.stringify({
 					phoneNumber: shippingInfo.phoneNumber,
 					address: shippingInfo.address,
@@ -102,6 +103,15 @@ function CheckoutPage() {
 			setCVVError("")
 			setExpiryDateError("")
 			setCardNumberError("")
+			setloading("0")
+			setShippingInfo({
+				phoneNumber: '',
+				address: '',
+				cardHolderName: '',
+				cardNumber: '',
+				cvv: '',
+				expiryDate: '',
+			})
 			sessionStorage.removeItem('cart')
 			toast.success('Order placed successfully')
 		} catch (error) {
@@ -273,7 +283,7 @@ function CheckoutPage() {
 							<input
 								type="text"
 								name="expiryDate"
-								placeholder="MM/YY"
+								placeholder="MM/YYYY"
 								value={shippingInfo.expiryDate}
 								onChange={handleChange}
 								required
