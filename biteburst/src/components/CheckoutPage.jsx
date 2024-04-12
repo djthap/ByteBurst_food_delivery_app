@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation ,useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import '../css/CheckoutPage.css'
 
 function CheckoutPage({loading,setloading}) {
+	const navigate = useNavigate()
+	
 	const [shippingInfo, setShippingInfo] = useState({
 		phoneNumber: '',
 		address: '',
@@ -24,8 +26,14 @@ function CheckoutPage({loading,setloading}) {
 	useEffect(() => {
 		const storedCart = JSON.parse(sessionStorage.getItem('cart')) || []
 		setCartItems(storedCart)
+		redirect()
 	}, [])
+	const redirect =()=>{
 
+		if (!sessionStorage.getItem('token')) {
+			return navigate('/login', { replace: true })
+		}
+	}
 	const handleRemoveFromCart = (index) => {
 		const updatedCart = [...cartItems]
 		updatedCart.splice(index, 1)

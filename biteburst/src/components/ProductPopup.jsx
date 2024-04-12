@@ -17,7 +17,6 @@ function ProductPopup({ productId, onClose, loading, setloading }) {
 	}, [productId])
 
 	useEffect(() => {
-		// Set selectedSize to the first available size when product changes
 		if (product && product.sizes && product.sizes.length > 0) {
 			setSelectedSize(product.sizes[0])
 		}
@@ -44,7 +43,8 @@ function ProductPopup({ productId, onClose, loading, setloading }) {
 	
 		const existingCart = JSON.parse(sessionStorage.getItem('cart')) || [];
 		// Check if the product already exists in the cart
-		const existingProductIndex = existingCart.findIndex(item => item.product.id === product.id);
+		const existingProductIndex = existingCart.findIndex(item => item.product._id === product._id);
+		console.log(existingProductIndex,"csdcdscsdcdscds" ,product.id )
 		if (existingProductIndex !== -1) {
 			// If the product exists, update its quantity
 			existingCart[existingProductIndex].quantity += quantity;
