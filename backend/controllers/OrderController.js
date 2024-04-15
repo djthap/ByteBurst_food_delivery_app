@@ -2,7 +2,17 @@ const Order = require('../models/Order.js')
 const fs = require('fs')
 const jwt = require('jsonwebtoken')
 const stripe = require('stripe')("sk_test_51P0TTMFCUOELksMndyC2FFYVYgXZZ9FtmmxPOT8ZufGkLUaOaC0cW4QWRD9edfy4ajupduwJ2sMD2Y8VSTH6nX4A00MM31KWKH")
+const nodemailer = require('nodemailer')
 
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  secure: true,
+  port: 465,
+	auth: {
+		user: 'biteburst34@gmail.com',
+		pass: 'myhqjoqiuabgbdoq',
+	},
+})
 exports.createOrder = async (req, res) => {
 	try {
 		const {
@@ -12,6 +22,7 @@ exports.createOrder = async (req, res) => {
 			cardNumber,
 			cvv,
 			expiryDate,
+			email,
 			items,
 			totalPrice,
 		} = req.body
@@ -40,7 +51,24 @@ exports.createOrder = async (req, res) => {
 		})
 
 		await order.save()
-		res.status(201).json(order)
+		
+	const mailOptions = {
+		from: 'yourEmail@gmail.com',
+		to: email,
+		subject: 'Thank You for Contacting  ',
+		text: `Your Order Placed Successfully \n\nRegards,\nByteBurst Team`,
+	}
+
+	transporter.sendMail(mailOptions, (error, info) => {
+		if (error) {
+			console.error(error)
+			res.status(500).send('Email not sent but order Placed Successfully',order)
+		} else {
+			console.log('Email sent: ' + info.response)
+			res.status(200).send({message:'Email sent successfully',order})
+		}
+	})
+		
 	} catch (error) {
 		console.error(error)
 		res.status(500).json({ message: 'Server Error' })
@@ -116,7 +144,8 @@ const session = await stripe.checkout.sessions.create({
 	success_url: `http://localhost:3000/orders/success`,
 	cancel_url: `http://localhost:3000/orders/cancel`,
 })
-res.json({id:session.id})
+console.log(session)
+res.json({id:session.id,data:session})
 	}
 	catch(error){
 		console.error(error)

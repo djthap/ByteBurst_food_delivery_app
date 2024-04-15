@@ -25,45 +25,48 @@ function Product({loading,setloading}) {
             setSelectedSize(product.sizes[0]);
         }
     }, [product]);
-
     const handleAddToCart = () => {
         if (!selectedSize) {
             toast.error('Please select a size.');
             return;
         }
-
+    
         let totalPrice = product.basePrice + selectedSize.price;
         selectedToppings.forEach((topping) => {
             totalPrice += topping.price;
         });
-
+    
+        // Update individual base price of the product
+        product.basePrice = totalPrice;
+    
         const cartItem = {
             product: product,
             selectedSize: selectedSize,
             selectedToppings: selectedToppings,
             totalPrice: totalPrice,
-            quantity: quantity
+            quantity: quantity,
         };
-
+    
         const existingCart = JSON.parse(sessionStorage.getItem('cart')) || [];
         // Check if the product already exists in the cart
-		const existingProductIndex = existingCart.findIndex(item => item.product._id === product._id);
-        
-		if (existingProductIndex !== -1) {
-			// If the product exists, update its quantity
-			existingCart[existingProductIndex].quantity += quantity;
-			setloading(cartItem);
-		} else {
-			// If the product doesn't exist, add it to the cart
-			existingCart.push(cartItem);
-			setloading(cartItem.quantity);
-		}
-        
-		sessionStorage.setItem('cart', JSON.stringify(existingCart));
+        const existingProductIndex = existingCart.findIndex(item => item.product._id === product._id);
+    
+        if (existingProductIndex !== -1) {
+            // If the product exists, update its quantity
+            existingCart[existingProductIndex].quantity += quantity;
+        } else {
+            // If the product doesn't exist, add it to the cart
+            existingCart.push(cartItem);
+        }
+    
+        // Update sessionStorage with the updated cart
+        sessionStorage.setItem('cart', JSON.stringify(existingCart));
+    
         toast.success(
             `Added ${product.name} to cart. Total price: $${totalPrice.toFixed(2)}`
         );
     };
+    
 
     const handleSizeSelection = (size) => {
         setSelectedSize(size);
